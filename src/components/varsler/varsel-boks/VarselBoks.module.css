@@ -1,0 +1,106 @@
+.beskjed {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  width: 444px;
+}
+
+.tittel {
+  font-size: 18px;
+  padding-bottom: 5px;
+  color: #272727;
+  font-weight: bolder;
+}
+
+.contentWrapper {
+  width: 100%;
+  margin-right: 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dato {
+  font-size: 16px;
+  color: #707070;
+}
+
+.ikon {
+  margin: 0 1rem 0 0;
+  background-color: #99c4dd;
+  width: 8px;
+  border-radius: 8px 0 0 8px;
+}
+
+.arkiverbarTittel {
+  font-weight: normal;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+.arkiverbarContentWrapper {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.datoOgKnapp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.arkiverbar:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.ikkeArkiverbar {
+  text-decoration: none;
+  transition: background-color 0.1s linear;
+}
+
+.ikkeArkiverbarTittel {
+  padding: 12px 0 5px 0;
+  font-weight: bolder;
+}
+
+.ikkeArkiverbarDato {
+  padding-bottom: 12px;
+}
+
+.ikkeArkiverbar:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #99c4dd;
+}
+
+.ikkeArkiverbar:hover .chevron {
+  transition-duration: 0.2s;
+  transform: translate(3px, 0);
+}
+
+.oppgave:hover {
+  background-color: #ffd799;
+}
+
+.ikonOppgave {
+  background-color: #ffd799 !important;
+}
+
+.chevron {
+  color: #707070;
+  width: 21px;
+  min-width: 21px;
+  height: 21px;
+}
+
+@media (max-width: 476px) {
+  .beskjed {
+    width: 100%;
+  }
+}

@@ -1,0 +1,21 @@
+.inngang {
+  text-decoration: underline;
+  color: black;
+}
+
+.inngang:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (min-width: 0px) {
+  .inngang {
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 648px) {
+  .inngang {
+    padding-bottom: 64px;
+  }
+}

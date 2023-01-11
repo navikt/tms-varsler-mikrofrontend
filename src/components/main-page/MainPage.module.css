@@ -1,0 +1,9 @@
+.varsler {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 48px 0;
+}
+
+.overskrift {
+  margin-bottom: 16px !important;
+}

@@ -1,13 +1,8 @@
-import { useQuery } from "react-query";
-import { fetcher } from "./api/api";
-import { apiUrl } from "./api/urls";
-import Komponent from "./components/Komponent";
+import MainPage from "./components/main-page/MainPage";
 import "@navikt/ds-css";
 
 function App() {
-  const { data } = useQuery(apiUrl, fetcher);
-
-  return <Komponent tekst={data?.tekst} />;
+  return <MainPage />;
 }
 
 export default App;
