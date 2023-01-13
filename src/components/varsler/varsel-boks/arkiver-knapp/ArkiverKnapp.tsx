@@ -1,19 +1,21 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { postDone } from "../../../../api/api";
-import useStore from "../../../../store/store";
+import useStore from "../../../../store/store.js";
 import { selectRemoveBeskjed } from "../../../../store/selectors.js";
-import { logAmplitudeEvent } from "../../../../utils/amplitude.js";
+import { logAmplitudeEvent } from "../../../../utils/amplitude";
 import style from "./ArkiverKnapp.module.css";
+import { Varsel } from "../../../main-page/MainPage";
 
 type Props = {
   eventId: string;
   setIsHover: (setIsHover: boolean) => void;
-  varsel: Record<string, unknown>;
+  varsel: Varsel;
 };
 
 const ArkiverKnapp = ({ eventId, setIsHover, varsel }: Props) => {
   const translate = useIntl();
+  // @ts-ignore
   const removeBeskjed = useStore(selectRemoveBeskjed);
 
   const handleOnClick = () => {

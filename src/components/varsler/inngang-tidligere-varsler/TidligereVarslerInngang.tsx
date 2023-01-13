@@ -7,7 +7,7 @@ import {
   inaktiveInnboksApiUrl,
   tidligereVarslerUrl,
 } from "../../../api/urls";
-import { komponent, logAmplitudeEvent } from "../../../utils/amplitude";
+import { logAmplitudeEvent } from "../../../utils/amplitude";
 import style from "./TidligereVarslerInngang.module.css";
 
 const InngangVarslinger = () => {

@@ -8,9 +8,9 @@ import {
   selectInnboksList,
   selectAddInnboksList,
 } from "../../store/selectors.js";
+import useStore from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
 import isMasked from "../../utils/isMasked";
-import useStore from "../../store/store";
 import { formatToReadableDate, setLocaleDate } from "../../language/i18n";
 import { Heading } from "@navikt/ds-react";
 import { useIntl } from "react-intl";
@@ -18,19 +18,26 @@ import style from "./MainPage.module.css";
 import VarselBoks from "../varsler/varsel-boks/VarselBoks";
 import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
 
+export interface Varsel {
+  forstBehandlet: string;
+  eventId: string;
+  tekst: string;
+  link: string;
+  sistOppdatert: string;
+  sikkerhetsnivaa: number;
+}
+
 const MainPage = () => {
   const { data: oppgaver, isLoading: isLoadingOppgaver } = useQuery(oppgaverApiUrl, fetcher);
-
+  const { data: innboks, isLoading: isLoadingInnboks } = useQuery(innboksApiUrl, fetcher);
+  // @ts-ignore
   const beskjeder = useStore(selectBeskjederList);
+  // @ts-ignore
   const addBeskjederList = useStore(selectAddBeskjederList);
+  // @ts-ignore
   const { isLoading: isLoadingBeskjeder } = useQuery(beskjederApiUrl, fetcher, {
+    // @ts-ignore
     onSuccess: addBeskjederList,
-  });
-
-  const innboks = useStore(selectInnboksList);
-  const addInnboksList = useStore(selectAddInnboksList);
-  const { isLoading: isLoadingInnboks } = useQuery(innboksApiUrl, fetcher, {
-    onSuccess: addInnboksList,
   });
 
   const { formatMessage } = useIntl();
@@ -55,26 +62,30 @@ const MainPage = () => {
         <Heading className={style.overskrift} size="small" level="2" spacing>
           {formatMessage({ id: "oppgaver.tittel" })}
         </Heading>
-        {oppgaver?.sort(sortByEventTidspunkt).map((o) => (
-          <li key={o.eventId}>
-            <VarselBoks
-              eventId={o.eventId}
-              tekst={o.tekst}
-              dato={formatToReadableDate(o.forstBehandlet)}
-              href={o.link}
-              isMasked={isMasked(o?.tekst)}
-              type="OPPGAVE"
-              varsel={o}
-            />
-          </li>
-        ))}
+        {
+          // @ts-ignore
+          oppgaver?.sort(sortByEventTidspunkt).map((o: Varsel) => (
+            <li key={o.eventId}>
+              <VarselBoks
+                eventId={o.eventId}
+                tekst={o.tekst}
+                dato={formatToReadableDate(o.forstBehandlet)}
+                href={o.link}
+                isMasked={isMasked(o?.tekst)}
+                type="OPPGAVE"
+                varsel={o}
+              />
+            </li>
+          ))
+        }
       </ul>
       <ul className={style.varsler}>
         <Heading className={style.overskrift} size="small" level="2" spacing>
           {formatMessage({ id: "beskjeder.tittel" })}
         </Heading>
         {beskjeder &&
-          beskjeder.sort(sortByEventTidspunkt).map((b) => (
+          // @ts-ignore
+          beskjeder.sort(sortByEventTidspunkt).map((b: Varsel) => (
             <li key={b.eventId}>
               <VarselBoks
                 eventId={b.eventId}
@@ -88,7 +99,8 @@ const MainPage = () => {
             </li>
           ))}
         {innboks &&
-          innboks.sort(sortByEventTidspunkt).map((i) => (
+          // @ts-ignore
+          innboks.sort(sortByEventTidspunkt).map((i: Varsel) => (
             <li key={i.eventId}>
               <VarselBoks
                 eventId={i.eventId}

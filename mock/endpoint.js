@@ -5,7 +5,6 @@ export default [
     response: () => {
       return [
         {
-          uid: "2313ef1a-a69a-45d9-a3ff-38e4522710e0",
           forstBehandlet: "2020-03-03T08:53:17.47Z",
           eventId: "1584093197470",
           tekst:
@@ -25,7 +24,6 @@ export default [
           sikkerhetsnivaa: 3,
         },
         {
-          uid: "b922506b-7789-4416-beab-409a7681f53e",
           forstBehandlet: "2020-03-13T09:03:01.449Z",
           eventId: "1584093781449",
           tekst: "Vi mottok søknaden din 18. september 2019. Du kan følge med på statusen i Dine foreldrepenger.",

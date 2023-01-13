@@ -1,4 +1,4 @@
-const isMasked = (tekst) => {
+const isMasked = (tekst: string) => {
   return tekst === "***";
 };
 

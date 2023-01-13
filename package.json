@@ -25,6 +25,7 @@
   "devDependencies": {
     "@testing-library/react": "12.1.2",
     "@testing-library/user-event": "13.5.0",
+    "@types/amplitude-js": "^8.16.2",
     "@types/react": "17.0.33",
     "@types/react-dom": "17.0.10",
     "@types/react-modal": "3.13.1",

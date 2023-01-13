@@ -3,6 +3,7 @@ import { useIntl } from "react-intl";
 import { Next } from "@navikt/ds-icons";
 import { postDone } from "../../../api/api.js";
 import { logAmplitudeEvent } from "../../../utils/amplitude.js";
+import { Varsel } from "../../main-page/MainPage.js";
 import ArkiverKnapp from "./arkiver-knapp/ArkiverKnapp";
 import style from "./VarselBoks.module.css";
 
@@ -13,7 +14,7 @@ type Props = {
   href: string;
   isMasked: boolean;
   type: string;
-  varsel: Record<string, unknown>;
+  varsel: Varsel;
 };
 
 const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Props) => {
@@ -30,7 +31,7 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
     if (type === "BESKJED") {
       postDone(eventId);
     }
-    logAmplitudeEvent("navigere", { komponent: type });
+    logAmplitudeEvent(type);
   };
 
   return isArkiverbar(href) ? (
@@ -68,7 +69,7 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
           </div>
           <div className={style.dato}>{dato}</div>
         </div>
-        <Next className={style.chevron} />
+        <Next className={style.chevron} onResize={undefined} onResizeCapture={undefined} />
       </div>
     </a>
   );

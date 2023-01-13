@@ -1,26 +1,33 @@
 import create from "zustand";
-
-const actions = (set) => ({
-  add: (beskjed) =>
-    set((state) => ({
+import { Varsel } from "../components/main-page/MainPage";
+import { State } from "./selectors";
+// @ts-ignore
+const actions = (set: any) => ({
+  add: (beskjed: Varsel) =>
+    set((state: State) => ({
       beskjederList: [...state.beskjederList, beskjed],
     })),
-  addBeskjedList: (beskjedListe) =>
-    set((state) => ({
+  // @ts-ignore
+  addBeskjedList: (beskjedListe: Varsel[]) =>
+    set(() => ({
       beskjederList: [...beskjedListe],
     })),
-  addInnboksList: (innboksListe) =>
-    set((state) => ({
+  // @ts-ignore
+  addInnboksList: (innboksListe: Varsel[]) =>
+    set(() => ({
       innboksList: [...innboksListe],
     })),
-  removeBeskjed: (beskjed) =>
-    set((state) => ({
+  // @ts-ignore
+  removeBeskjed: (beskjed: Varsel) =>
+    set((state: State) => ({
       beskjederList: state.beskjederList.filter((b) => b.eventId !== beskjed.eventId),
     })),
-  removeInnboks: (beskjed) =>
-    set((state) => ({
+  // @ts-ignore
+  removeInnboks: (beskjed: Varsel) =>
+    set((state: State) => ({
       innboksList: state.innboksList.filter((b) => b.eventId !== beskjed.eventId),
     })),
+  // @ts-ignore
   clear: () =>
     set({
       beskjederList: [],

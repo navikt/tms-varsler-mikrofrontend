@@ -10,7 +10,7 @@ export const initializeAmplitude = () => {
   });
 };
 
-export function logAmplitudeEvent(komponent) {
+export function logAmplitudeEvent(komponent: string) {
   amplitude.getInstance().logEvent("navigere", {
     komponent,
   });
