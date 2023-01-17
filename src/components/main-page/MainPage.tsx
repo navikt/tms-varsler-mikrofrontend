@@ -32,7 +32,7 @@ const MainPage = () => {
     onSuccess: addBeskjederList,
   });
 
-  const { formatMessage } = useIntl();
+  const translate = useIntl();
   const isLoadingVarsler = isLoadingBeskjeder || isLoadingOppgaver || isLoadingInnboks;
   const hasNoVarsler = oppgaver?.length === 0 && beskjeder?.length === 0 && innboks?.length === 0;
   setLocaleDate();
@@ -46,57 +46,62 @@ const MainPage = () => {
   }
 
   return (
-    <section>
-      <ul className={style.varsler}>
-        <Heading className={style.overskrift} size="small" level="2" spacing>
-          {formatMessage({ id: "oppgaver.tittel" })}
-        </Heading>
-        {oppgaver?.sort(sortByEventTidspunkt).map((o: Varsel) => (
-          <li key={o.eventId}>
-            <VarselBoks
-              eventId={o.eventId}
-              tekst={o.tekst}
-              dato={formatToReadableDate(o.forstBehandlet)}
-              href={o.link}
-              isMasked={isMasked(o?.tekst)}
-              type="OPPGAVE"
-              varsel={o}
-            />
-          </li>
-        ))}
-      </ul>
-      <ul className={style.varsler}>
-        <Heading className={style.overskrift} size="small" level="2" spacing>
-          {formatMessage({ id: "beskjeder.tittel" })}
-        </Heading>
-        {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
-          <li key={b.eventId}>
-            <VarselBoks
-              eventId={b.eventId}
-              tekst={b.tekst}
-              dato={formatToReadableDate(b.forstBehandlet)}
-              href={b.link}
-              isMasked={isMasked(b?.tekst)}
-              type="BESKJED"
-              varsel={b}
-            />
-          </li>
-        ))}
-        {innboks?.sort(sortByEventTidspunkt).map((i: Varsel) => (
-          <li key={i.eventId}>
-            <VarselBoks
-              eventId={i.eventId}
-              tekst={i.tekst}
-              dato={formatToReadableDate(i.forstBehandlet)}
-              href={i.link}
-              isMasked={isMasked(i?.tekst)}
-              type="INNBOKS"
-              varsel={i}
-            />
-          </li>
-        ))}
-      </ul>
-      <TidligereVarslerInngang />
+    <section className={style.pageWrapper}>
+      <div className={style.headerWrapper}>
+        <Heading size={"large"}>{translate.formatMessage({ id: "varsler.tittel" })}</Heading>
+      </div>
+      <section className={style.varslerContainer}>
+        <ul className={style.varsler}>
+          <Heading className={style.overskrift} size="small" level="2" spacing>
+            {translate.formatMessage({ id: "oppgaver.tittel" })}
+          </Heading>
+          {oppgaver?.sort(sortByEventTidspunkt).map((o: Varsel) => (
+            <li key={o.eventId}>
+              <VarselBoks
+                eventId={o.eventId}
+                tekst={o.tekst}
+                dato={formatToReadableDate(o.forstBehandlet)}
+                href={o.link}
+                isMasked={isMasked(o?.tekst)}
+                type="OPPGAVE"
+                varsel={o}
+              />
+            </li>
+          ))}
+        </ul>
+        <ul className={style.varsler}>
+          <Heading className={style.overskrift} size="small" level="2" spacing>
+            {translate.formatMessage({ id: "beskjeder.tittel" })}
+          </Heading>
+          {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
+            <li key={b.eventId}>
+              <VarselBoks
+                eventId={b.eventId}
+                tekst={b.tekst}
+                dato={formatToReadableDate(b.forstBehandlet)}
+                href={b.link}
+                isMasked={isMasked(b?.tekst)}
+                type="BESKJED"
+                varsel={b}
+              />
+            </li>
+          ))}
+          {innboks?.sort(sortByEventTidspunkt).map((i: Varsel) => (
+            <li key={i.eventId}>
+              <VarselBoks
+                eventId={i.eventId}
+                tekst={i.tekst}
+                dato={formatToReadableDate(i.forstBehandlet)}
+                href={i.link}
+                isMasked={isMasked(i?.tekst)}
+                type="INNBOKS"
+                varsel={i}
+              />
+            </li>
+          ))}
+        </ul>
+        <TidligereVarslerInngang />
+      </section>
     </section>
   );
 };
