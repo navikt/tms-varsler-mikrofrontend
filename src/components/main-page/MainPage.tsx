@@ -48,10 +48,12 @@ const MainPage = () => {
   return (
     <section className={style.pageWrapper}>
       <div className={style.headerWrapper}>
-        <Heading size={"large"}>{translate.formatMessage({ id: "varsler.tittel" })}</Heading>
+        <Heading className={style.content} size={"large"}>
+          {translate.formatMessage({ id: "varsler.tittel" })}
+        </Heading>
       </div>
       <section className={style.varslerContainer}>
-        <ul className={style.varsler}>
+        <ul className={`${style.varsler} ${style.content}`}>
           <Heading className={style.overskrift} size="small" level="2" spacing>
             {translate.formatMessage({ id: "oppgaver.tittel" })}
           </Heading>
@@ -69,7 +71,7 @@ const MainPage = () => {
             </li>
           ))}
         </ul>
-        <ul className={style.varsler}>
+        <ul className={`${style.varsler} ${style.content}`}>
           <Heading className={style.overskrift} size="small" level="2" spacing>
             {translate.formatMessage({ id: "beskjeder.tittel" })}
           </Heading>
@@ -100,7 +102,9 @@ const MainPage = () => {
             </li>
           ))}
         </ul>
-        <TidligereVarslerInngang />
+        <div className={style.content}>
+          <TidligereVarslerInngang />
+        </div>
       </section>
     </section>
   );
