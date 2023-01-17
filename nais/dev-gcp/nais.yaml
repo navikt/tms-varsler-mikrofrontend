@@ -23,7 +23,7 @@ spec:
     min: 2
     max: 4
   ingresses:
-    - "https://person.dev.nav.no/tms-varsler"
+    - "https://dev.nav.no/tms-varsler"
   resources:
     limits:
       cpu: "3"
