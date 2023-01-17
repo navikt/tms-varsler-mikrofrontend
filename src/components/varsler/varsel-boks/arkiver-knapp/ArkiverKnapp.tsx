@@ -15,7 +15,6 @@ type Props = {
 
 const ArkiverKnapp = ({ eventId, setIsHover, varsel }: Props) => {
   const translate = useIntl();
-  // @ts-ignore
   const removeBeskjed = useStore(selectRemoveBeskjed);
 
   const handleOnClick = () => {

@@ -1,3 +1,4 @@
+import React from "react";
 import MainPage from "./components/main-page/MainPage";
 import "@navikt/ds-css";
 

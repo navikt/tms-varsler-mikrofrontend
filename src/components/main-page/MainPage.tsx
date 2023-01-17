@@ -2,12 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
 import { oppgaverApiUrl, beskjederApiUrl, innboksApiUrl } from "../../api/urls";
-import {
-  selectAddBeskjederList,
-  selectBeskjederList,
-  selectInnboksList,
-  selectAddInnboksList,
-} from "../../store/selectors.js";
+import { selectAddBeskjederList, selectBeskjederList } from "../../store/selectors.js";
 import useStore from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
 import isMasked from "../../utils/isMasked";
@@ -30,13 +25,10 @@ export interface Varsel {
 const MainPage = () => {
   const { data: oppgaver, isLoading: isLoadingOppgaver } = useQuery(oppgaverApiUrl, fetcher);
   const { data: innboks, isLoading: isLoadingInnboks } = useQuery(innboksApiUrl, fetcher);
-  // @ts-ignore
+
   const beskjeder = useStore(selectBeskjederList);
-  // @ts-ignore
   const addBeskjederList = useStore(selectAddBeskjederList);
-  // @ts-ignore
   const { isLoading: isLoadingBeskjeder } = useQuery(beskjederApiUrl, fetcher, {
-    // @ts-ignore
     onSuccess: addBeskjederList,
   });
 
@@ -55,64 +47,54 @@ const MainPage = () => {
 
   return (
     <section>
-      <Heading size="large" level="1" spacing>
-        {formatMessage({ id: "varsler.tittel" })}
-      </Heading>
       <ul className={style.varsler}>
         <Heading className={style.overskrift} size="small" level="2" spacing>
           {formatMessage({ id: "oppgaver.tittel" })}
         </Heading>
-        {
-          // @ts-ignore
-          oppgaver?.sort(sortByEventTidspunkt).map((o: Varsel) => (
-            <li key={o.eventId}>
-              <VarselBoks
-                eventId={o.eventId}
-                tekst={o.tekst}
-                dato={formatToReadableDate(o.forstBehandlet)}
-                href={o.link}
-                isMasked={isMasked(o?.tekst)}
-                type="OPPGAVE"
-                varsel={o}
-              />
-            </li>
-          ))
-        }
+        {oppgaver?.sort(sortByEventTidspunkt).map((o: Varsel) => (
+          <li key={o.eventId}>
+            <VarselBoks
+              eventId={o.eventId}
+              tekst={o.tekst}
+              dato={formatToReadableDate(o.forstBehandlet)}
+              href={o.link}
+              isMasked={isMasked(o?.tekst)}
+              type="OPPGAVE"
+              varsel={o}
+            />
+          </li>
+        ))}
       </ul>
       <ul className={style.varsler}>
         <Heading className={style.overskrift} size="small" level="2" spacing>
           {formatMessage({ id: "beskjeder.tittel" })}
         </Heading>
-        {beskjeder &&
-          // @ts-ignore
-          beskjeder.sort(sortByEventTidspunkt).map((b: Varsel) => (
-            <li key={b.eventId}>
-              <VarselBoks
-                eventId={b.eventId}
-                tekst={b.tekst}
-                dato={formatToReadableDate(b.forstBehandlet)}
-                href={b.link}
-                isMasked={isMasked(b?.tekst)}
-                type="BESKJED"
-                varsel={b}
-              />
-            </li>
-          ))}
-        {innboks &&
-          // @ts-ignore
-          innboks.sort(sortByEventTidspunkt).map((i: Varsel) => (
-            <li key={i.eventId}>
-              <VarselBoks
-                eventId={i.eventId}
-                tekst={i.tekst}
-                dato={formatToReadableDate(i.forstBehandlet)}
-                href={i.link}
-                isMasked={isMasked(i?.tekst)}
-                type="INNBOKS"
-                varsel={i}
-              />
-            </li>
-          ))}
+        {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
+          <li key={b.eventId}>
+            <VarselBoks
+              eventId={b.eventId}
+              tekst={b.tekst}
+              dato={formatToReadableDate(b.forstBehandlet)}
+              href={b.link}
+              isMasked={isMasked(b?.tekst)}
+              type="BESKJED"
+              varsel={b}
+            />
+          </li>
+        ))}
+        {innboks?.sort(sortByEventTidspunkt).map((i: Varsel) => (
+          <li key={i.eventId}>
+            <VarselBoks
+              eventId={i.eventId}
+              tekst={i.tekst}
+              dato={formatToReadableDate(i.forstBehandlet)}
+              href={i.link}
+              isMasked={isMasked(i?.tekst)}
+              type="INNBOKS"
+              varsel={i}
+            />
+          </li>
+        ))}
       </ul>
       <TidligereVarslerInngang />
     </section>
