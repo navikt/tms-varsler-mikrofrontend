@@ -46,85 +46,89 @@ const MainPage = () => {
   }
 
   return (
-    <section className={style.pageWrapper}>
+    <div className={style.pageWrapper}>
       <div className={style.headerWrapper}>
         <Heading className={style.content} size={"large"}>
           {translate.formatMessage({ id: "varsler.tittel" })}
         </Heading>
       </div>
-      <section className={style.varslerContainer}>
+      <div className={style.varslerContainer}>
         {hasNoVarsler ? (
           <div className={style.content}>
             <IngenVarsler />
           </div>
         ) : (
           <>
-            <ul className={`${style.varsler} ${style.content}`}>
-              <Heading className={style.overskrift} size="medium" level="2" spacing>
-                {translate.formatMessage({ id: "oppgaver.tittel" })}
-              </Heading>
-              {hasNoOppgaver ? (
-                <IngenAvType type="OPPGAVE" />
-              ) : (
-                oppgaver?.sort(sortByEventTidspunkt).map((o: Varsel) => (
-                  <li key={o.eventId}>
-                    <VarselBoks
-                      eventId={o.eventId}
-                      tekst={o.tekst}
-                      dato={formatToReadableDate(o.forstBehandlet)}
-                      href={o.link}
-                      isMasked={isMasked(o?.tekst)}
-                      type="OPPGAVE"
-                      varsel={o}
-                    />
-                  </li>
-                ))
-              )}
-            </ul>
-            <ul className={`${style.varsler} ${style.content} ${style.oppgaver}`}>
-              <Heading className={style.overskrift} size="medium" level="2" spacing>
-                {translate.formatMessage({ id: "beskjeder.tittel" })}
-              </Heading>
-              {hasNoBeskjeder ? (
-                <IngenAvType type="BESKJED" />
-              ) : (
-                <>
-                  {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
-                    <li key={b.eventId}>
+            <section>
+              <ul className={`${style.varsler} ${style.content}`}>
+                <Heading className={style.overskrift} size="medium" level="2" spacing>
+                  {translate.formatMessage({ id: "oppgaver.tittel" })}
+                </Heading>
+                {hasNoOppgaver ? (
+                  <IngenAvType type="OPPGAVE" />
+                ) : (
+                  oppgaver?.sort(sortByEventTidspunkt).map((o: Varsel) => (
+                    <li key={o.eventId}>
                       <VarselBoks
-                        eventId={b.eventId}
-                        tekst={b.tekst}
-                        dato={formatToReadableDate(b.forstBehandlet)}
-                        href={b.link}
-                        isMasked={isMasked(b?.tekst)}
-                        type="BESKJED"
-                        varsel={b}
+                        eventId={o.eventId}
+                        tekst={o.tekst}
+                        dato={formatToReadableDate(o.forstBehandlet)}
+                        href={o.link}
+                        isMasked={isMasked(o?.tekst)}
+                        type="OPPGAVE"
+                        varsel={o}
                       />
                     </li>
-                  ))}
-                  {innboks?.sort(sortByEventTidspunkt).map((i: Varsel) => (
-                    <li key={i.eventId}>
-                      <VarselBoks
-                        eventId={i.eventId}
-                        tekst={i.tekst}
-                        dato={formatToReadableDate(i.forstBehandlet)}
-                        href={i.link}
-                        isMasked={isMasked(i?.tekst)}
-                        type="INNBOKS"
-                        varsel={i}
-                      />
-                    </li>
-                  ))}
-                </>
-              )}
-            </ul>
+                  ))
+                )}
+              </ul>
+            </section>
+            <section>
+              <ul className={`${style.varsler} ${style.content} ${style.oppgaver}`}>
+                <Heading className={style.overskrift} size="medium" level="2" spacing>
+                  {translate.formatMessage({ id: "beskjeder.tittel" })}
+                </Heading>
+                {hasNoBeskjeder ? (
+                  <IngenAvType type="BESKJED" />
+                ) : (
+                  <>
+                    {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
+                      <li key={b.eventId}>
+                        <VarselBoks
+                          eventId={b.eventId}
+                          tekst={b.tekst}
+                          dato={formatToReadableDate(b.forstBehandlet)}
+                          href={b.link}
+                          isMasked={isMasked(b?.tekst)}
+                          type="BESKJED"
+                          varsel={b}
+                        />
+                      </li>
+                    ))}
+                    {innboks?.sort(sortByEventTidspunkt).map((i: Varsel) => (
+                      <li key={i.eventId}>
+                        <VarselBoks
+                          eventId={i.eventId}
+                          tekst={i.tekst}
+                          dato={formatToReadableDate(i.forstBehandlet)}
+                          href={i.link}
+                          isMasked={isMasked(i?.tekst)}
+                          type="INNBOKS"
+                          varsel={i}
+                        />
+                      </li>
+                    ))}
+                  </>
+                )}
+              </ul>
+            </section>
             <div className={style.content}>
               <TidligereVarslerInngang />
             </div>
           </>
         )}
-      </section>
-    </section>
+      </div>
+    </div>
   );
 };
 
