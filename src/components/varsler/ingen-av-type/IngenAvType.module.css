@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  border-radius: 4px;
+  border: 2px dashed var(--a-border-divider);
+  padding: 16px;
+  width: 444px;
+  justify-content: center;
+  color: var(--a-text-subtle);
+}
+
+@media (max-width: 476px) {
+  .wrapper {
+    width: 100%;
+  }
+}

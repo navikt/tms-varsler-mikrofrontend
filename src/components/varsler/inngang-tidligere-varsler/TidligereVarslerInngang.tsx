@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "react-query";
 import { fetcher } from "../../../api/api";
 import { useIntl } from "react-intl";
@@ -10,7 +11,7 @@ import {
 import { logAmplitudeEvent } from "../../../utils/amplitude";
 import style from "./TidligereVarslerInngang.module.css";
 
-const InngangVarslinger = () => {
+const TidligereVarslerInngang = () => {
   const { data: inaktiveOppgaver } = useQuery(inaktiveOppgaverApiUrl, fetcher);
   const { data: inaktiveBeskjeder } = useQuery(inaktiveBeskjederApiUrl, fetcher);
   const { data: inaktiveInnboks } = useQuery(inaktiveInnboksApiUrl, fetcher);
@@ -31,4 +32,4 @@ const InngangVarslinger = () => {
   );
 };
 
-export default InngangVarslinger;
+export default TidligereVarslerInngang;

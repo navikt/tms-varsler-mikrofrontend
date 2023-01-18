@@ -9,13 +9,20 @@
 }
 
 .varslerContainer {
-  padding: 24px 16px 48px 16px;
-  background-color: var(--a-bg-subtle);
+  padding: 0 16px 48px 16px;
+  background-color: var(--a-surface-subtle);
 }
 
 .varsler {
   list-style-type: none;
   padding: 0;
+  padding-top: 40px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.oppgaver {
+  margin-bottom: 40px;
 }
 
 .overskrift {
