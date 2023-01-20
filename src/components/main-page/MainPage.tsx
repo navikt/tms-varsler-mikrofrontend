@@ -38,7 +38,7 @@ const MainPage = () => {
   const isLoadingVarsler = isLoadingBeskjeder || isLoadingOppgaver || isLoadingInnboks;
   const hasNoOppgaver = oppgaver?.length === 0;
   const hasNoBeskjeder = beskjeder?.length === 0 && innboks?.length === 0;
-  const hasNoVarsler = hasNoOppgaver && hasNoBeskjeder;
+  const hasNoVarsler = true; //hasNoOppgaver && hasNoBeskjeder;
   setLocaleDate();
 
   if (isLoadingVarsler) {
