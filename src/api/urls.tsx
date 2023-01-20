@@ -35,7 +35,6 @@ export const apiUrl = API_URL[getEnvironment()];
 export const dittNavApiUrl = DITTNAV_API_URL[getEnvironment()];
 export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
 
-export const postDigiSosDoneUrl = `${dittNavApiUrl}/digisos/paabegynte/done`;
 export const postDoneUrl = `${dittNavApiUrl}/produce/done`;
 
 export const oppgaverApiUrl = `${dittNavApiUrl}/oppgave`;

@@ -1,5 +1,5 @@
 import { QueryFunctionContext } from "react-query";
-import { postDigiSosDoneUrl, postDoneUrl } from "./urls";
+import { postDoneUrl } from "./urls";
 
 const checkResponse = (response: Response) => {
   if (!response.ok) {
@@ -36,6 +36,4 @@ const postJSON = (url: string, content: string) =>
       .catch((e) => reject(e));
   });
 
-export const postDone = (content: string) => postJSON(postDoneUrl, content);
-
-export const postDigisosDone = (content: string) => postJSON(postDigiSosDoneUrl, content);
+export const postDone = ({ eventId }: { eventId: string }) => postJSON(postDoneUrl, eventId);
