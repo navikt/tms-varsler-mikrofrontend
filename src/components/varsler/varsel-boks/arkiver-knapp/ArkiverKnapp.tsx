@@ -18,7 +18,7 @@ const ArkiverKnapp = ({ eventId, setIsHover, varsel }: Props) => {
   const removeBeskjed = useStore(selectRemoveBeskjed);
 
   const handleOnClick = () => {
-    postDone(eventId);
+    postDone({ eventId: eventId });
     logAmplitudeEvent("Arkivert beskjed");
     removeBeskjed(varsel);
   };
