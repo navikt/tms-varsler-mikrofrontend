@@ -10,7 +10,7 @@
 }
 
 .headerWrapper {
-  padding: 24px;
+  padding: 24px 16px;
   max-width: 912px;
   margin: 0 auto;
   min-height: 10vh;
