@@ -1,5 +1,5 @@
 import { QueryFunctionContext } from "react-query";
-import { postDigiSosDoneUrl, postDoneUrl } from "./urls";
+import { postDoneUrl } from "./urls";
 
 const checkResponse = (response: Response) => {
   if (!response.ok) {
@@ -20,7 +20,7 @@ export const fetcher = async (queryFunctionContext: QueryFunctionContext) => {
   return response.json();
 };
 
-const postJSON = (url: string, content: string) =>
+const postJSON = (url: string, eventObj: { eventId: string }) =>
   new Promise((resolve, reject) => {
     fetch(url, {
       method: "POST",
@@ -29,13 +29,13 @@ const postJSON = (url: string, content: string) =>
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(content),
+      body: JSON.stringify(eventObj),
     })
       .then((response) => response.headers)
       .then((headers) => resolve(headers))
       .catch((e) => reject(e));
   });
 
-export const postDone = (content: string) => postJSON(postDoneUrl, content);
-
-export const postDigisosDone = (content: string) => postJSON(postDigiSosDoneUrl, content);
+export const postDone = (eventObj: { eventId: string }) => {
+  postJSON(postDoneUrl, eventObj);
+};

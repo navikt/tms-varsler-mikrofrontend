@@ -29,7 +29,7 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
 
   const handleOnClick = () => {
     if (type === "BESKJED") {
-      postDone(eventId);
+      postDone({ eventId: eventId });
     }
     logAmplitudeEvent(type);
   };

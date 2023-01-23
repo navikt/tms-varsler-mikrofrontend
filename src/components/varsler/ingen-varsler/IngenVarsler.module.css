@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.tekstWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.headerWrapper {
+  margin-bottom: 24px;
+}
