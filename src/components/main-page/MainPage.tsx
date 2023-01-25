@@ -9,11 +9,11 @@ import isMasked from "../../utils/isMasked";
 import { formatToReadableDate, setLocaleDate } from "../../language/i18n";
 import { Heading } from "@navikt/ds-react";
 import { useIntl } from "react-intl";
-import style from "./MainPage.module.css";
 import VarselBoks from "../varsler/varsel-boks/VarselBoks";
 import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
 import IngenVarsler from "../varsler/ingen-varsler/IngenVarsler";
 import IngenAvType from "../varsler/ingen-av-type/IngenAvType";
+import style from "./MainPage.module.css";
 
 export interface Varsel {
   forstBehandlet: string;
@@ -125,7 +125,7 @@ const MainPage = () => {
                   )}
                 </ul>
               </section>
-              <div className={style.content}>
+              <div className={style.varslerLenke}>
                 <TidligereVarslerInngang />
               </div>
             </>
