@@ -49,21 +49,17 @@ const MainPage = () => {
     <div className={style.pageWrapper}>
       <div className={style.headerBackground}>
         <div className={style.headerWrapper}>
-          <Heading className={style.content} size={"large"}>
-            {translate.formatMessage({ id: "varsler.tittel" })}
-          </Heading>
+          <Heading size={"large"}>{translate.formatMessage({ id: "varsler.tittel" })}</Heading>
         </div>
       </div>
       <div className={style.varslerBackground}>
         <div className={style.varslerContainer}>
           {hasNoVarsler ? (
-            <div className={style.content}>
-              <IngenVarsler />
-            </div>
+            <IngenVarsler />
           ) : (
             <>
-              <section>
-                <ul className={`${style.varsler} ${style.content}`}>
+              <div>
+                <ul className={style.varsler}>
                   <Heading className={style.overskrift} size="medium" level="2" spacing>
                     {translate.formatMessage({ id: "oppgaver.tittel" })}
                   </Heading>
@@ -85,9 +81,9 @@ const MainPage = () => {
                     ))
                   )}
                 </ul>
-              </section>
-              <section>
-                <ul className={`${style.varsler} ${style.content} ${style.oppgaver}`}>
+              </div>
+              <div>
+                <ul className={`${style.varsler} ${style.oppgaver}`}>
                   <Heading className={style.overskrift} size="medium" level="2" spacing>
                     {translate.formatMessage({ id: "beskjeder.tittel" })}
                   </Heading>
@@ -124,7 +120,7 @@ const MainPage = () => {
                     </>
                   )}
                 </ul>
-              </section>
+              </div>
               <div className={style.varslerLenke}>
                 <TidligereVarslerInngang />
               </div>
