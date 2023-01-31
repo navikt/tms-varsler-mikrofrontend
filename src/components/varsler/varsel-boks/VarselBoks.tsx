@@ -29,7 +29,7 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
   const isArkiverbar = (href: string) => hasNoHref(href) && type !== "OPPGAVE";
 
   const handleOnClick = () => {
-    if (type === "BESKJED") {
+    if (type === "BESKJED" && !isMasked) {
       postDone({ eventId: eventId });
     }
     logAmplitudeEvent(type);
