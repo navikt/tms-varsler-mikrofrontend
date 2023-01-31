@@ -6,6 +6,7 @@ import { logAmplitudeEvent } from "../../../utils/amplitude.js";
 import { Varsel } from "../../main-page/MainPage.js";
 import ArkiverKnapp from "./arkiver-knapp/ArkiverKnapp";
 import style from "./VarselBoks.module.css";
+import {stepUpUrl} from "../../../api/urls";
 
 type Props = {
   eventId: string;
@@ -58,7 +59,7 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
           ? `${style.beskjed} ${style.ikkeArkiverbar} ${style.oppgave}`
           : `${style.beskjed} ${style.ikkeArkiverbar}`
       }
-      href={href}
+      href={isMasked ? stepUpUrl : href}
       onClick={handleOnClick}
     >
       <div className={isOppgave ? `${style.ikon} ${style.ikonOppgave}` : style.ikon} />
