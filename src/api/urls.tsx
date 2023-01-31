@@ -31,9 +31,16 @@ const MIN_SIDE_URL = {
   production: "https://www.nav.no/minside",
 };
 
+const LOGINSERVICE_URL = {
+  local: "http://localhost:3000/loginservice",
+  development: "https://loginservice.dev.nav.no/login?level=Level4",
+  production: "https://loginservice.nav.no/login?level=Level4",
+}
+
 export const apiUrl = API_URL[getEnvironment()];
 export const dittNavApiUrl = DITTNAV_API_URL[getEnvironment()];
 export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
+export const stepUpUrl = `${LOGINSERVICE_URL[getEnvironment()]}&redirect=${minSideUrl}/varsler`;
 
 export const postDoneUrl = `${dittNavApiUrl}/produce/done`;
 
