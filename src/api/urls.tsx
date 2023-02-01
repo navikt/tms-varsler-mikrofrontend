@@ -31,9 +31,16 @@ const MIN_SIDE_URL = {
   production: "https://www.nav.no/minside",
 };
 
+const MIN_SIDE_PROXY_URL = {
+  local: "http://localhost:3000/varsel/aktive",
+  development: "https://www.dev.nav.no/tms-min-side-proxy/varsel/aktive",
+  production: "https://www.nav.no/tms-min-side-proxy/varsel/aktive",
+};
+
 export const apiUrl = API_URL[getEnvironment()];
 export const dittNavApiUrl = DITTNAV_API_URL[getEnvironment()];
 export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
+export const minSideProxyUrl = MIN_SIDE_PROXY_URL[getEnvironment()];
 
 export const postDoneUrl = `${dittNavApiUrl}/produce/done`;
 
