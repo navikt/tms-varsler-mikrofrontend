@@ -6,7 +6,7 @@ import { logAmplitudeEvent } from "../../../utils/amplitude.js";
 import { Varsel } from "../../main-page/MainPage.js";
 import ArkiverKnapp from "./arkiver-knapp/ArkiverKnapp";
 import style from "./VarselBoks.module.css";
-import {stepUpUrl} from "../../../api/urls";
+import { stepUpUrl } from "../../../api/urls";
 
 type Props = {
   eventId: string;
@@ -32,7 +32,7 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
     if (type === "BESKJED" && !isMasked) {
       postDone({ eventId: eventId });
     }
-    logAmplitudeEvent(type);
+    logAmplitudeEvent(type, href);
   };
 
   return isArkiverbar(href) ? (
