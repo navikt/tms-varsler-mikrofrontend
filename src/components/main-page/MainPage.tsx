@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
-import { minSideProxyUrl } from "../../api/urls";
+import { varslerUrl } from "../../api/urls";
 import { selectAddVarsler, selectBeskjederList } from "../../store/selectors.js";
 import useStore from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
@@ -30,7 +30,7 @@ export interface Varsler {
 const MainPage = () => {
   const beskjeder = useStore(selectBeskjederList);
   const addVarsler = useStore(selectAddVarsler);
-  const { data: varsler, isLoading: isLoadingVarsler } = useQuery(minSideProxyUrl, fetcher, {
+  const { data: varsler, isLoading: isLoadingVarsler } = useQuery(varslerUrl, fetcher, {
     onSuccess: addVarsler,
   });
 
