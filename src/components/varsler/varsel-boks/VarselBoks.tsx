@@ -7,6 +7,7 @@ import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
 import { Varsel } from "../../main-page/MainPage.js";
 import ArkiverKnapp from "./arkiver-knapp/ArkiverKnapp";
 import style from "./VarselBoks.module.css";
+import { stepUpUrl } from "../../../api/urls";
 
 type Props = {
   varsel: Varsel;
@@ -26,10 +27,10 @@ const VarselBoks = ({ varsel, type }: Props) => {
   const isArkiverbar = (link: string) => hasNoHref(link) && type !== "OPPGAVE";
 
   const handleOnClick = () => {
-    if (type === "BESKJED") {
+    if (type === "BESKJED" && !varsel.isMasked) {
       postDone({ eventId: varsel.eventId });
     }
-    logAmplitudeEvent(type);
+    logAmplitudeEvent(type, varsel.link);
   };
 
   setLocaleDate();
@@ -58,7 +59,7 @@ const VarselBoks = ({ varsel, type }: Props) => {
           ? `${style.beskjed} ${style.ikkeArkiverbar} ${style.oppgave}`
           : `${style.beskjed} ${style.ikkeArkiverbar}`
       }
-      href={varsel.link}
+      href={varsel.isMasked ? stepUpUrl : varsel.link}
       onClick={handleOnClick}
     >
       <div className={isOppgave ? `${style.ikon} ${style.ikonOppgave}` : style.ikon} />
