@@ -2,7 +2,6 @@
 
 En vertikal mikrofrontend som viser aktive varsler for innloggede brukere på en egen underside til Min Side.
 
-
 url i prod: https://www.nav.no/minside/varsler
 
 url i dev: https://www.dev.nav.no/minside/varsler

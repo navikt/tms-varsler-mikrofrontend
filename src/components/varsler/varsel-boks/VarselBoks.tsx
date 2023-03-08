@@ -3,39 +3,39 @@ import { useIntl } from "react-intl";
 import { Next } from "@navikt/ds-icons";
 import { postDone } from "../../../api/api.js";
 import { logAmplitudeEvent } from "../../../utils/amplitude.js";
+import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
 import { Varsel } from "../../main-page/MainPage.js";
 import ArkiverKnapp from "./arkiver-knapp/ArkiverKnapp";
 import style from "./VarselBoks.module.css";
 import { stepUpUrl } from "../../../api/urls";
 
 type Props = {
-  eventId: string;
-  tekst: string;
-  dato: string;
-  href: string;
-  isMasked: boolean;
-  type: string;
   varsel: Varsel;
+  type: string;
 };
 
-const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Props) => {
+const VarselBoks = ({ varsel, type }: Props) => {
   //TODO: Legge inn stepup-tekst i alle språk.
   const [isHover, setIsHover] = useState(false);
 
   const translate = useIntl();
 
-  const hasNoHref = (href: string) => href === undefined || href === null || href === "";
+  const dato = formatToReadableDate(varsel.forstBehandlet);
+
+  const hasNoHref = (link: string) => link === undefined || link === null || link === "";
   const isOppgave = type === "OPPGAVE";
-  const isArkiverbar = (href: string) => hasNoHref(href) && type !== "OPPGAVE";
+  const isArkiverbar = (link: string) => hasNoHref(link) && type !== "OPPGAVE";
 
   const handleOnClick = () => {
-    if (type === "BESKJED" && !isMasked) {
-      postDone({ eventId: eventId });
+    if (type === "BESKJED" && !varsel.isMasked) {
+      postDone({ eventId: varsel.eventId });
     }
-    logAmplitudeEvent(type, href);
+    logAmplitudeEvent(type, varsel.link);
   };
 
-  return isArkiverbar(href) ? (
+  setLocaleDate();
+
+  return isArkiverbar(varsel.link) ? (
     <div
       className={
         isHover ? `${style.beskjed} ${style.arkiverbar} ${style.hover}` : `${style.beskjed} ${style.arkiverbar}`
@@ -44,11 +44,11 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
       <div className={style.ikon} />
       <div className={`${style.contentWrapper} ${style.arkiverbarContentWrapper}`}>
         <div className={`${style.tittel} ${style.arkiverbarTittel}`}>
-          {isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : tekst}
+          {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
         </div>
         <div className={style.datoOgKnapp}>
           <div className={`${style.dato} ${style.arkiverbarDato}`}>{dato}</div>
-          <ArkiverKnapp eventId={eventId} setIsHover={setIsHover} varsel={varsel} />
+          <ArkiverKnapp eventId={varsel.eventId} setIsHover={setIsHover} varsel={varsel} />
         </div>
       </div>
     </div>
@@ -59,14 +59,14 @@ const VarselBoks = ({ eventId, tekst, dato, href, isMasked, type, varsel }: Prop
           ? `${style.beskjed} ${style.ikkeArkiverbar} ${style.oppgave}`
           : `${style.beskjed} ${style.ikkeArkiverbar}`
       }
-      href={isMasked ? stepUpUrl : href}
+      href={varsel.isMasked ? stepUpUrl : varsel.link}
       onClick={handleOnClick}
     >
       <div className={isOppgave ? `${style.ikon} ${style.ikonOppgave}` : style.ikon} />
       <div className={style.contentWrapper}>
         <div>
           <div className={style.tittel}>
-            {isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : tekst}
+            {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
           </div>
           <div className={style.dato}>{dato}</div>
         </div>

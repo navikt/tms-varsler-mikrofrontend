@@ -35,14 +35,23 @@ const LOGINSERVICE_URL = {
   local: "http://localhost:3000/loginservice",
   development: "https://loginservice.dev.nav.no/login?level=Level4",
   production: "https://loginservice.nav.no/login?level=Level4",
-}
+};
+
+const MIN_SIDE_PROXY_URL = {
+  local: "http://localhost:3000",
+  development: "https://www.dev.nav.no/tms-min-side-proxy",
+  production: "https://www.nav.no/tms-min-side-proxy",
+};
 
 export const apiUrl = API_URL[getEnvironment()];
 export const dittNavApiUrl = DITTNAV_API_URL[getEnvironment()];
 export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
 export const stepUpUrl = `${LOGINSERVICE_URL[getEnvironment()]}&redirect=${minSideUrl}/varsler`;
+const minSideProxyUrl = MIN_SIDE_PROXY_URL[getEnvironment()];
 
 export const postDoneUrl = `${dittNavApiUrl}/produce/done`;
+
+export const varslerUrl = `${minSideProxyUrl}/varsel/tms-varsel-api/aktive`;
 
 export const oppgaverApiUrl = `${dittNavApiUrl}/oppgave`;
 export const beskjederApiUrl = `${dittNavApiUrl}/beskjed`;

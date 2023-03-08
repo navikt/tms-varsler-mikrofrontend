@@ -1,29 +1,32 @@
 import create from "zustand";
-import { Varsel } from "../components/main-page/MainPage";
+import { Varsel, Varsler } from "../components/main-page/MainPage";
 import { State } from "./selectors";
 
 export const actions = (set: any) => ({
   add: (beskjed: Varsel) =>
     set((state: State) => ({
-      beskjederList: [...state.beskjederList, beskjed],
+      beskjederList: [...state.varsler.beskjeder, beskjed],
     })),
-  addBeskjedList: (beskjedListe: Varsel[]) =>
+  addVarsler: (varsler: Varsler) =>
     set(() => ({
-      beskjederList: [...beskjedListe],
+      varsler: { beskjeder: varsler.beskjeder, oppgaver: varsler.oppgaver, innbokser: varsler.innbokser },
     })),
   removeBeskjed: (beskjed: Varsel) =>
     set((state: State) => ({
-      beskjederList: state.beskjederList.filter((b) => b.eventId !== beskjed.eventId),
+      varsler: {
+        beskjeder: state.varsler.beskjeder.filter((b) => b.eventId !== beskjed.eventId),
+        oppgaver: state.varsler.oppgaver,
+        innbokser: state.varsler.innbokser,
+      },
     })),
   clear: () =>
     set({
-      beskjederList: [],
-      innboksList: [],
+      varsler: { beskjeder: [], oppgaver: [], innbokser: [] },
     }),
 });
 
 const useStore = create<State>((set) => ({
-  beskjederList: [],
+  varsler: { beskjeder: [], oppgaver: [], innbokser: [] },
   ...actions(set),
 }));
 
