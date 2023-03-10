@@ -49,7 +49,7 @@ export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
 export const stepUpUrl = `${LOGINSERVICE_URL[getEnvironment()]}&redirect=${minSideUrl}/varsler`;
 const minSideProxyUrl = MIN_SIDE_PROXY_URL[getEnvironment()];
 
-export const postDoneUrl = `${dittNavApiUrl}/produce/done`;
+export const postDoneUrl = `${minSideProxyUrl}/eventaggregator/beskjed/done`;
 
 export const varslerUrl = `${minSideProxyUrl}/varsel/tms-varsel-api/aktive`;
 
