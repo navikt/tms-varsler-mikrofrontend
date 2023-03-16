@@ -19,6 +19,8 @@ export interface Varsel {
   tekst: string;
   link: string;
   isMasked: boolean;
+  eksternVarslingSendt: boolean;
+  eksternVarslingKanaler: string[];
 }
 
 export interface Varsler {
