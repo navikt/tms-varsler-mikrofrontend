@@ -11,11 +11,6 @@ import { stepUpUrl } from "../../../api/urls";
 import useStore from "../../../store/store.js";
 import { selectRemoveBeskjed } from "../../../store/selectors.js";
 
-type Props = {
-  varsel: Varsel;
-  type: string;
-};
-
 const getEksternvarslingStatus = (kanaler: string[]) => {
   const translate = useIntl();
   if (kanaler.includes("SMS") && kanaler.includes("EPOST")) {
@@ -27,10 +22,26 @@ const getEksternvarslingStatus = (kanaler: string[]) => {
   }
 };
 
-const VarselBoks = ({ varsel, type }: Props) => {
-  //TODO: Legge inn stepup-tekst i alle språk.
-  const [isHover, setIsHover] = useState(false);
+const ArkiverButton = ({ varsel }: { varsel: Varsel }) => {
+  const translate = useIntl();
 
+  const removeBeskjed = useStore(selectRemoveBeskjed);
+
+  const handleOnClick = () => {
+    postDone({ eventId: varsel.eventId });
+    logAmplitudeEvent("Arkivert beskjed");
+    removeBeskjed(varsel);
+  };
+
+  return (
+    <Button variant="tertiary" size="xsmall" onClick={handleOnClick}>
+      {translate.formatMessage({ id: "arkiver.knapp" })}
+    </Button>
+  );
+};
+
+const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
+  //TODO: Legge inn stepup-tekst i alle språk.
   const translate = useIntl();
 
   const dato = formatToReadableDate(varsel.forstBehandlet);
@@ -48,22 +59,10 @@ const VarselBoks = ({ varsel, type }: Props) => {
     logAmplitudeEvent(type, varsel.link);
   };
 
-  const removeBeskjed = useStore(selectRemoveBeskjed);
-
-  const handleOnClickArkiver = () => {
-    postDone({ eventId: varsel.eventId });
-    logAmplitudeEvent("Arkivert beskjed");
-    removeBeskjed(varsel);
-  };
-
   setLocaleDate();
 
   return isArkiverbar(varsel.link) ? (
-    <div
-      className={
-        isHover ? `${style.beskjed} ${style.arkiverbar} ${style.hover}` : `${style.beskjed} ${style.arkiverbar}`
-      }
-    >
+    <div className={`${style.beskjed} ${style.arkiverbar}`}>
       <div className={style.ikon} />
       <div className={`${style.contentWrapper} ${style.arkiverbarContentWrapper}`}>
         <div className={`${style.tittel} ${style.arkiverbarTittel}`}>
@@ -78,9 +77,7 @@ const VarselBoks = ({ varsel, type }: Props) => {
               </Tag>
             )}
           </div>
-          <Button variant="tertiary" size="xsmall" onClick={handleOnClickArkiver}>
-            {translate.formatMessage({ id: "arkiver.knapp" })}
-          </Button>
+          <ArkiverButton varsel={varsel} />
         </div>
       </div>
     </div>
