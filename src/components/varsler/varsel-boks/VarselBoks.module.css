@@ -24,11 +24,6 @@
   align-items: center;
 }
 
-.dato {
-  font-size: 16px;
-  color: #707070;
-}
-
 .ikon {
   margin: 0 1rem 0 0;
   background-color: #99c4dd;
@@ -47,12 +42,21 @@
   align-items: flex-start;
 }
 
-.datoOgKnapp {
+.metadataOgKnapp {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.metadata {
+  font-size: 16px;
+  color: #707070;
+}
+
+.dato {
+  padding-right: 0.5rem;
 }
 
 .arkiverbar:hover {

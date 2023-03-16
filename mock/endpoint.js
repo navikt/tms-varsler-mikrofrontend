@@ -11,6 +11,8 @@ export default [
             tekst: "Svar fra veilederen din i innboksen: Hei, nå har jeg sjekket om...",
             link: "https://enNyLenke",
             isMasked: false,
+            eksternVarslingSendt: false,
+            eksternVarslingKanaler: [],
           },
           {
             forstBehandlet: "2020-03-13T09:03:09.348Z",
@@ -18,6 +20,8 @@ export default [
             tekst: "Samtalereferat fra telefonsamtale 08.12.2019 kl. 11:44",
             link: "https://enNyLenke",
             isMasked: false,
+            eksternVarslingSendt: true,
+            eksternVarslingKanaler: ["SMS"],
           },
         ],
         beskjeder: [
@@ -28,6 +32,8 @@ export default [
               "Vi mottok søknaden din 18. september 2019. Du kan følge med på statusen i Dine foreldrepenger. Her kan du også ettersende vedlegg til sønakden hvis det er noe du ønsker å gjøre.",
             link: "https://enNyLenke",
             isMasked: false,
+            eksternVarslingSendt: true,
+            eksternVarslingKanaler: ["SMS"],
           },
           {
             forstBehandlet: "2019-11-27T12:24:34.671Z",
@@ -37,6 +43,8 @@ export default [
               "Søknad om forskudd på dagpenger er mottatt. Hvis du trenger forskudd på dagpenger eller ettersende vedlegg til sønakden din kan du trykke deg inn i den nye forskuddskøsningen ved å gå til denne siden.",
             link: null,
             isMasked: true,
+            eksternVarslingSendt: true,
+            eksternVarslingKanaler: ["SMS", "EPOST"],
           },
           {
             forstBehandlet: "2020-03-13T09:03:01.449Z",
@@ -44,6 +52,8 @@ export default [
             tekst: "Vi mottok søknaden din 18. september 2019. Du kan følge med på statusen i Dine foreldrepenger.",
             link: "",
             isMasked: false,
+            eksternVarslingSendt: false,
+            eksternVarslingKanaler: [],
           },
         ],
         innbokser: [
@@ -53,6 +63,8 @@ export default [
             tekst: "Svar fra veilederen din i innboksen: Hei, nå har jeg sjekket om...",
             link: "https://enNyLenke",
             isMasked: false,
+            eksternVarslingSendt: true,
+            eksternVarslingKanaler: ["EPOST"],
           },
           {
             forstBehandlet: "2020-03-13T09:03:09.348Z",
@@ -60,6 +72,8 @@ export default [
             tekst: "Samtalereferat fra telefonsamtale 08.12.2019 kl. 11:44",
             link: "https://enNyLenke",
             isMasked: false,
+            eksternVarslingSendt: false,
+            eksternVarslingKanaler: [],
           },
         ],
       };

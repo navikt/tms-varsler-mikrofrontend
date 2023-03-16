@@ -9,5 +9,8 @@
   "inngang.tidligere-varsler": "Tidligere varsler",
   "arkiver.knapp": "Arkiver",
   "varsler.tom.liste": "Du har ingen nye varsler",
-  "varsler.tom.liste.ingress": "Vi varsler deg når noe skjer"
+  "varsler.tom.liste.ingress": "Vi varsler deg når noe skjer",
+  "varsel.eksternt-varslet-sms": "Varslet på SMS",
+  "varsel.eksternt-varslet-epost": "Varslet på e-post",
+  "varsel.eksternt-varslet-epost-sms": "Varslet på e-post og SMS"
 }
