@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
 import { Next } from "@navikt/ds-icons";
-import { Tag } from "@navikt/ds-react";
+import { Tag, Button } from "@navikt/ds-react";
 import { postDone } from "../../../api/api.js";
 import { logAmplitudeEvent } from "../../../utils/amplitude.js";
 import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
 import { Varsel } from "../../main-page/MainPage.js";
-import ArkiverKnapp from "./arkiver-knapp/ArkiverKnapp";
 import style from "./VarselBoks.module.css";
 import { stepUpUrl } from "../../../api/urls";
+import useStore from "../../../store/store.js";
+import { selectRemoveBeskjed } from "../../../store/selectors.js";
 
 type Props = {
   varsel: Varsel;
@@ -47,6 +48,14 @@ const VarselBoks = ({ varsel, type }: Props) => {
     logAmplitudeEvent(type, varsel.link);
   };
 
+  const removeBeskjed = useStore(selectRemoveBeskjed);
+
+  const handleOnClickArkiver = () => {
+    postDone({ eventId: varsel.eventId });
+    logAmplitudeEvent("Arkivert beskjed");
+    removeBeskjed(varsel);
+  };
+
   setLocaleDate();
 
   return isArkiverbar(varsel.link) ? (
@@ -69,7 +78,9 @@ const VarselBoks = ({ varsel, type }: Props) => {
               </Tag>
             )}
           </div>
-          <ArkiverKnapp eventId={varsel.eventId} setIsHover={setIsHover} varsel={varsel} />
+          <Button variant="tertiary" size="xsmall" onClick={handleOnClickArkiver}>
+            {translate.formatMessage({ id: "arkiver.knapp" })}
+          </Button>
         </div>
       </div>
     </div>
