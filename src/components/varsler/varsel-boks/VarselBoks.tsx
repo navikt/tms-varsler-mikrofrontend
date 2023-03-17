@@ -48,7 +48,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
 
   const hasNoHref = (link: string) => link === undefined || link === null || link === "";
   const isOppgave = type === "OPPGAVE";
-  const isArkiverbar = (link: string) => hasNoHref(link) && type !== "OPPGAVE";
+  const isArkiverbar = (link: string) => !varsel.isMasked && hasNoHref(link) && type !== "OPPGAVE";
 
   const eksternVarslingStatus = getEksternvarslingStatus(varsel.eksternVarslingKanaler);
 
