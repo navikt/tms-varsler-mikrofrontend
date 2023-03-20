@@ -10,6 +10,8 @@ import style from "./VarselBoks.module.css";
 import { stepUpUrl } from "../../../api/urls";
 import useStore from "../../../store/store.js";
 import { selectRemoveBeskjed } from "../../../store/selectors.js";
+import BeskjedIkon from "../../../ikoner/BeskjedIkon.js";
+import OppgaveIkon from "../../../ikoner/OppgaveIkon.js";
 
 const getEksternvarslingStatus = (kanaler: string[]) => {
   const translate = useIntl();
@@ -91,23 +93,23 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
       href={varsel.isMasked ? stepUpUrl : varsel.link}
       onClick={handleOnClick}
     >
-      <div className={isOppgave ? `${style.ikon} ${style.ikonOppgave}` : style.ikon} />
       <div className={style.contentWrapper}>
-        <div>
-          <div className={style.tittel}>
-            {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
+        <div className={style.tittel}>
+          {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
+        </div>
+
+        <div className={style.dato}>{dato}</div>
+
+        <div className={style.metadataOgKnapp}>
+          <div className={style.ikonOgTag}>
+            {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
+            {eksternVarslingStatus && (
+              <Tag variant="neutral" size="xsmall" className={style.varselTag}>
+                {eksternVarslingStatus}
+              </Tag>
+            )}
           </div>
-          <div className={style.metadataOgKnapp}>
-            <div className={style.metadata}>
-              <span className={style.dato}>{dato}</span>
-              {eksternVarslingStatus && (
-                <Tag variant="neutral" size="xsmall">
-                  {eksternVarslingStatus}
-                </Tag>
-              )}
-            </div>
-            <Next className={style.chevron} onResize={undefined} onResizeCapture={undefined} />
-          </div>
+          <Next className={style.chevron} onResize={undefined} onResizeCapture={undefined} />
         </div>
       </div>
     </a>

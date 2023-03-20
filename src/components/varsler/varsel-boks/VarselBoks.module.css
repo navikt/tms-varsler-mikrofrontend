@@ -9,19 +9,13 @@
 
 .tittel {
   font-size: 18px;
-  padding-bottom: 5px;
   color: #272727;
   font-weight: bolder;
 }
 
 .contentWrapper {
   width: 100%;
-  margin-right: 16px;
-  padding: 8px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  padding: 16px;
 }
 
 .ikon {
@@ -34,7 +28,6 @@
 .arkiverbarTittel {
   font-weight: normal;
   font-size: 18px;
-  padding-bottom: 5px;
 }
 
 .arkiverbarContentWrapper {
@@ -44,19 +37,24 @@
 
 .metadataOgKnapp {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
 }
 
-.metadata {
-  font-size: 16px;
-  color: #707070;
+.ikonOgTag {
+  display: flex;
+  column-gap: 8px;
+  margin-top: 12px;
+}
+
+.varselTag {
+  border: none !important;
 }
 
 .dato {
-  padding-right: 0.5rem;
+  font-size: 16px;
+  color: #707070;
 }
 
 .arkiverbar:hover {
