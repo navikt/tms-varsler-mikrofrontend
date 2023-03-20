@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useIntl } from "react-intl";
 import { Next } from "@navikt/ds-icons";
 import { Tag, Button } from "@navikt/ds-react";
@@ -97,16 +97,18 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
           <div className={style.tittel}>
             {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
           </div>
-          <div className={style.metadata}>
-            <span className={style.dato}>{dato}</span>
-            {eksternVarslingStatus && (
-              <Tag variant="neutral" size="xsmall">
-                {eksternVarslingStatus}
-              </Tag>
-            )}
+          <div className={style.metadataOgKnapp}>
+            <div className={style.metadata}>
+              <span className={style.dato}>{dato}</span>
+              {eksternVarslingStatus && (
+                <Tag variant="neutral" size="xsmall">
+                  {eksternVarslingStatus}
+                </Tag>
+              )}
+            </div>
+            <Next className={style.chevron} onResize={undefined} onResizeCapture={undefined} />
           </div>
         </div>
-        <Next className={style.chevron} onResize={undefined} onResizeCapture={undefined} />
       </div>
     </a>
   );
