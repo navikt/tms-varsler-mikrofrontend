@@ -1,3 +1,8 @@
+.contentWrapper {
+  padding: 16px;
+  width: 100%;
+}
+
 .varsel {
   display: flex;
   flex-direction: row;
@@ -8,19 +13,34 @@
   color: #272727;
 }
 
-.contentWrapper {
-  padding: 16px;
-  width: 100%;
+.varsel:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
-.arkiverbarTittel {
-  font-weight: normal;
-  font-size: 18px;
+.klikkbartVarsel {
+  text-decoration: none;
+  transition: background-color 0.1s linear;
 }
 
-.arkiverbarContentWrapper {
-  flex-direction: column;
-  align-items: flex-start;
+.klikkbartVarsel:hover {
+  cursor: pointer;
+}
+
+.klikkbartVarsel:hover .chevron {
+  transition-duration: 0.2s;
+  transform: translate(3px, 0);
+}
+
+.klikkbarTittel {
+  font-weight: bolder !important;
+}
+
+.beskjed:hover {
+  background-color: #99c4dd;
+}
+
+.oppgave:hover {
+  background-color: #ffd799;
 }
 
 .metadataOgKnapp {
@@ -42,34 +62,6 @@
 
 .dato {
   color: #707070;
-}
-
-.arkiverbar:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
-}
-
-.ikkeArkiverbar {
-  text-decoration: none;
-  transition: background-color 0.1s linear;
-}
-
-.ikkeArkiverbar:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  background-color: #99c4dd;
-}
-
-.ikkeArkiverbar:hover .chevron {
-  transition-duration: 0.2s;
-  transform: translate(3px, 0);
-}
-
-.oppgave:hover {
-  background-color: #ffd799;
-}
-
-.ikonOppgave {
-  background-color: #ffd799 !important;
 }
 
 .chevron {

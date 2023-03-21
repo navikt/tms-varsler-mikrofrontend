@@ -64,8 +64,8 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
   setLocaleDate();
 
   return isArkiverbar(varsel.link) ? (
-    <div className={`${style.varsel} ${style.arkiverbar}`}>
-      <div className={`${style.contentWrapper} ${style.arkiverbarContentWrapper}`}>
+    <div className={style.varsel}>
+      <div className={style.contentWrapper}>
         <BodyShort>
           {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
         </BodyShort>
@@ -91,14 +91,14 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
     <a
       className={
         isOppgave
-          ? `${style.varsel} ${style.ikkeArkiverbar} ${style.oppgave}`
-          : `${style.varsel} ${style.ikkeArkiverbar}`
+          ? `${style.varsel} ${style.klikkbartVarsel} ${style.oppgave}`
+          : `${style.varsel} ${style.klikkbartVarsel} ${style.beskjed}`
       }
       href={varsel.isMasked ? stepUpUrl : varsel.link}
       onClick={handleOnClick}
     >
       <div className={style.contentWrapper}>
-        <BodyShort>
+        <BodyShort className={style.klikkbarTittel}>
           {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
         </BodyShort>
 
