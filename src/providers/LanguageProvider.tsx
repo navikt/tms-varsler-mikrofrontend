@@ -1,23 +1,20 @@
-import React from "react";
-import { IntlProvider } from "react-intl";
-import nbMessages from "../language/nb.json";
-import enMessages from "../language/en.json";
+import React, { useState, useEffect, createContext } from "react";
 
-type Props = {
-  defaultSprak: string;
-  children?: any;
+export type Language = "nb" | "en" | "nn";
+
+const defualtLanguage = (sessionStorage.getItem("language") ?? "nb") as Language;
+export const LanguageContext = createContext(defualtLanguage);
+
+const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
+  const [language, setLanguage] = useState(defualtLanguage);
+
+  useEffect(() => {
+    window.addEventListener("storage", () => {
+      setLanguage((sessionStorage.getItem("language") ?? "nb") as Language);
+    });
+  }, []);
+
+  return <LanguageContext.Provider value={language}>{children}</LanguageContext.Provider>;
 };
-
-const loadMessages = (sprak: string) =>
-  ({
-    nb: nbMessages,
-    en: enMessages,
-  }[sprak]);
-
-const LanguageProvider = ({ defaultSprak, children }: Props) => (
-  <IntlProvider locale={defaultSprak} messages={loadMessages(defaultSprak)}>
-    {children}
-  </IntlProvider>
-);
 
 export default LanguageProvider;

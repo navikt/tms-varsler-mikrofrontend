@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useIntl } from "react-intl";
+import React, { useState, useContext } from "react";
+import { LanguageContext } from "../../../providers/LanguageProvider";
+import { text } from "../../../language/text";
 import { Next } from "@navikt/ds-icons";
 import { postDone } from "../../../api/api.js";
 import { logAmplitudeEvent } from "../../../utils/amplitude.js";
@@ -18,7 +19,7 @@ const VarselBoks = ({ varsel, type }: Props) => {
   //TODO: Legge inn stepup-tekst i alle språk.
   const [isHover, setIsHover] = useState(false);
 
-  const translate = useIntl();
+  const language = useContext(LanguageContext);
 
   const dato = formatToReadableDate(varsel.forstBehandlet);
 
@@ -44,7 +45,7 @@ const VarselBoks = ({ varsel, type }: Props) => {
       <div className={style.ikon} />
       <div className={`${style.contentWrapper} ${style.arkiverbarContentWrapper}`}>
         <div className={`${style.tittel} ${style.arkiverbarTittel}`}>
-          {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
+          {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
         </div>
         <div className={style.datoOgKnapp}>
           <div className={`${style.dato} ${style.arkiverbarDato}`}>{dato}</div>
@@ -65,9 +66,7 @@ const VarselBoks = ({ varsel, type }: Props) => {
       <div className={isOppgave ? `${style.ikon} ${style.ikonOppgave}` : style.ikon} />
       <div className={style.contentWrapper}>
         <div>
-          <div className={style.tittel}>
-            {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
-          </div>
+          <div className={style.tittel}>{varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}</div>
           <div className={style.dato}>{dato}</div>
         </div>
         <Next className={style.chevron} onResize={undefined} onResizeCapture={undefined} />

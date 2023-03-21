@@ -1,5 +1,6 @@
-import React from "react";
-import { useIntl } from "react-intl";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../../../providers/LanguageProvider";
+import { text } from "../../../../language/text";
 import { postDone } from "../../../../api/api";
 import useStore from "../../../../store/store.js";
 import { selectRemoveBeskjed } from "../../../../store/selectors.js";
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const ArkiverKnapp = ({ eventId, setIsHover, varsel }: Props) => {
-  const translate = useIntl();
+  const language = useContext(LanguageContext);
   const removeBeskjed = useStore(selectRemoveBeskjed);
 
   const handleOnClick = () => {
@@ -38,7 +39,7 @@ const ArkiverKnapp = ({ eventId, setIsHover, varsel }: Props) => {
       onMouseLeave={handleMouseLeave}
       onClick={handleOnClick}
     >
-      {translate.formatMessage({ id: "arkiver.knapp" })}
+      {text.arkiverKnapp[language]}
     </button>
   );
 };

@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../../providers/LanguageProvider";
+import { text } from "../../../language/text";
 import { BodyShort } from "@navikt/ds-react";
-import { useIntl } from "react-intl";
 import style from "./IngenAvType.module.css";
 
 const IngenAvType = ({ type }: { type: string }) => {
-  const translate = useIntl();
+  const language = useContext(LanguageContext);
   const isOppgave = type === "OPPGAVE";
 
   return (
     <div className={style.wrapper}>
-      <BodyShort size="medium">
-        {isOppgave
-          ? translate.formatMessage({ id: "oppgave.ingen" })
-          : translate.formatMessage({ id: "beskjed.ingen" })}
-      </BodyShort>
+      <BodyShort size="medium">{isOppgave ? text.oppgaveIngen[language] : text.beskjedIngen[language]}</BodyShort>
     </div>
   );
 };

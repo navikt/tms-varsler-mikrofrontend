@@ -7,7 +7,7 @@ const Mikrofrontend = () => {
   initializeAmplitude();
 
   return (
-    <LanguageProvider defaultSprak="nb">
+    <LanguageProvider>
       <QueryClientProvider client={new QueryClient()}>
         <App />
       </QueryClientProvider>
