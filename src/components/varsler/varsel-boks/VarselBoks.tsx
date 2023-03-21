@@ -1,7 +1,7 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Next } from "@navikt/ds-icons";
-import { Tag, Button } from "@navikt/ds-react";
+import { Tag, Button, BodyShort, BodyLong } from "@navikt/ds-react";
 import { postDone } from "../../../api/api.js";
 import { logAmplitudeEvent } from "../../../utils/amplitude.js";
 import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
@@ -64,17 +64,21 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
   setLocaleDate();
 
   return isArkiverbar(varsel.link) ? (
-    <div className={`${style.beskjed} ${style.arkiverbar}`}>
-      <div className={style.ikon} />
+    <div className={`${style.varsel} ${style.arkiverbar}`}>
       <div className={`${style.contentWrapper} ${style.arkiverbarContentWrapper}`}>
-        <div className={`${style.tittel} ${style.arkiverbarTittel}`}>
+        <BodyShort>
           {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
-        </div>
+        </BodyShort>
+
+        <BodyLong size="small" className={style.dato}>
+          {dato}
+        </BodyLong>
+
         <div className={style.metadataOgKnapp}>
-          <div className={style.metadata}>
-            <span className={style.dato}>{dato}</span>
+          <div className={style.ikonOgTag}>
+            {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
             {eksternVarslingStatus && (
-              <Tag variant="neutral" size="xsmall">
+              <Tag variant="neutral" size="xsmall" className={style.varselTag}>
                 {eksternVarslingStatus}
               </Tag>
             )}
@@ -87,18 +91,20 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
     <a
       className={
         isOppgave
-          ? `${style.beskjed} ${style.ikkeArkiverbar} ${style.oppgave}`
-          : `${style.beskjed} ${style.ikkeArkiverbar}`
+          ? `${style.varsel} ${style.ikkeArkiverbar} ${style.oppgave}`
+          : `${style.varsel} ${style.ikkeArkiverbar}`
       }
       href={varsel.isMasked ? stepUpUrl : varsel.link}
       onClick={handleOnClick}
     >
       <div className={style.contentWrapper}>
-        <div className={style.tittel}>
+        <BodyShort>
           {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
-        </div>
+        </BodyShort>
 
-        <div className={style.dato}>{dato}</div>
+        <BodyLong size="small" className={style.dato}>
+          {dato}
+        </BodyLong>
 
         <div className={style.metadataOgKnapp}>
           <div className={style.ikonOgTag}>

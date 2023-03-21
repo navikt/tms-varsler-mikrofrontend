@@ -1,28 +1,15 @@
-.beskjed {
+.varsel {
   display: flex;
   flex-direction: row;
   background-color: #ffffff;
   border-radius: 8px;
   margin-bottom: 4px;
   width: 444px;
-}
-
-.tittel {
-  font-size: 18px;
   color: #272727;
-  font-weight: bolder;
 }
 
 .contentWrapper {
-  width: 100%;
   padding: 16px;
-}
-
-.ikon {
-  margin: 0 1rem 0 0;
-  background-color: #99c4dd;
-  width: 8px;
-  border-radius: 8px 0 0 8px;
 }
 
 .arkiverbarTittel {
@@ -53,7 +40,6 @@
 }
 
 .dato {
-  font-size: 16px;
   color: #707070;
 }
 
@@ -64,15 +50,6 @@
 .ikkeArkiverbar {
   text-decoration: none;
   transition: background-color 0.1s linear;
-}
-
-.ikkeArkiverbarTittel {
-  padding: 12px 0 5px 0;
-  font-weight: bolder;
-}
-
-.ikkeArkiverbarDato {
-  padding-bottom: 12px;
 }
 
 .ikkeArkiverbar:hover {
