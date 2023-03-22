@@ -9,10 +9,9 @@
   background-color: #ffffff;
   border-radius: 8px;
   margin-bottom: 8px;
-  width: 600px;
+  width: 444px;
   color: #272727;
-  border: solid 1px;
-  border-color: var(--a-border-subtle);
+  border: solid 1px var(--a-border-subtle);
 }
 
 .klikkbartVarsel {
@@ -63,7 +62,7 @@
 }
 
 @media (max-width: 476px) {
-  .beskjed {
+  .varsel {
     width: 100%;
   }
 }
