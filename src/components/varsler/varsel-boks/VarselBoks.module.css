@@ -8,13 +8,11 @@
   flex-direction: row;
   background-color: #ffffff;
   border-radius: 8px;
-  margin-bottom: 4px;
-  width: 444px;
+  margin-bottom: 8px;
+  width: 600px;
   color: #272727;
-}
-
-.varsel:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border: solid 1px;
+  border-color: var(--a-border-subtle);
 }
 
 .klikkbartVarsel {
@@ -23,6 +21,7 @@
 }
 
 .klikkbartVarsel:hover {
+  background-color: var(--a-surface-hover);
   cursor: pointer;
 }
 
@@ -33,14 +32,6 @@
 
 .klikkbarTittel {
   font-weight: bolder !important;
-}
-
-.beskjed:hover {
-  background-color: #99c4dd;
-}
-
-.oppgave:hover {
-  background-color: #ffd799;
 }
 
 .metadataOgKnapp {
