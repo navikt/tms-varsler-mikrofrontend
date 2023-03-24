@@ -1,20 +1,21 @@
-import React from "react";
-import { useIntl } from "react-intl";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../../providers/LanguageProvider";
+import { text } from "../../../language/text";
 import { BodyLong, Heading } from "@navikt/ds-react";
 import KattIngenVarsler from "../../../ikoner/KattIngenVarsler";
 import style from "./IngenVarsler.module.css";
 import TidligereVarslerInngang from "../inngang-tidligere-varsler/TidligereVarslerInngang";
 
 const IngenVarsler = () => {
-  const translate = useIntl();
+  const language = useContext(LanguageContext);
   return (
     <>
       <div className={style.wrapper}>
         <KattIngenVarsler />
         <div className={style.tekstWrapper}>
           <div className={style.headerWrapper}>
-            <Heading size="small">{translate.formatMessage({ id: "varsler.tom.liste" })}</Heading>
-            <BodyLong size="small">{translate.formatMessage({ id: "varsler.tom.liste.ingress" })}</BodyLong>
+            <Heading size="small">{text.varslerTomListe[language]}</Heading>
+            <BodyLong size="small">{text.varslerTomListeIngress[language]}</BodyLong>
           </div>
           <TidligereVarslerInngang />
         </div>

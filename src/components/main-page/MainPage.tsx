@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../providers/LanguageProvider";
+import { text } from "../../language/text";
 import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
 import { varslerUrl } from "../../api/urls";
@@ -6,7 +8,6 @@ import { selectAddVarsler, selectBeskjederList } from "../../store/selectors.js"
 import useStore from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
 import { BodyShort, Heading } from "@navikt/ds-react";
-import { useIntl } from "react-intl";
 import VarselBoks from "../varsler/varsel-boks/VarselBoks";
 import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
 import IngenVarsler from "../varsler/ingen-varsler/IngenVarsler";
@@ -36,7 +37,8 @@ const MainPage = () => {
     onSuccess: addVarsler,
   });
 
-  const translate = useIntl();
+  const language = useContext(LanguageContext);
+
   const hasNoOppgaver = varsler?.oppgaver.length === 0;
   const hasNoBeskjeder = varsler?.beskjeder.length === 0 && varsler?.innbokser.length === 0;
   const hasNoVarsler = hasNoOppgaver && hasNoBeskjeder;
@@ -48,7 +50,7 @@ const MainPage = () => {
   return (
     <div className={style.pageWrapper}>
       <div className={style.headerWrapper}>
-        <Heading size={"large"}>{translate.formatMessage({ id: "varsler.tittel" })}</Heading>
+        <Heading size={"large"}>{text.varslerTittel[language]}</Heading>
       </div>
       <div className={style.varslerContainer}>
         {hasNoVarsler ? (
@@ -58,7 +60,7 @@ const MainPage = () => {
             <div>
               <ul className={style.varselList}>
                 <BodyShort size="medium" spacing>
-                  {translate.formatMessage({ id: "oppgaver.tittel" })}{" "}
+                  {text.oppgaverTittel[language]}
                 </BodyShort>
                 {hasNoOppgaver ? (
                   <IngenAvType type="OPPGAVE" />
@@ -74,7 +76,7 @@ const MainPage = () => {
             <div>
               <ul className={`${style.varselList} ${style.beskjedList}`}>
                 <BodyShort size="medium" spacing>
-                  {translate.formatMessage({ id: "beskjeder.tittel" })}
+                  {text.beskjederTittel[language]}
                 </BodyShort>
                 {hasNoBeskjeder ? (
                   <IngenAvType type="BESKJED" />

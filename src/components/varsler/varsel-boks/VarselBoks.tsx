@@ -1,5 +1,6 @@
-import React from "react";
-import { useIntl } from "react-intl";
+import React, { useState, useContext } from "react";
+import { LanguageContext } from "../../../providers/LanguageProvider";
+import { text } from "../../../language/text";
 import { Next } from "@navikt/ds-icons";
 import { Tag, Button, BodyShort, BodyLong } from "@navikt/ds-react";
 import { postDone } from "../../../api/api.js";
@@ -14,19 +15,18 @@ import BeskjedIkon from "../../../ikoner/BeskjedIkon.js";
 import OppgaveIkon from "../../../ikoner/OppgaveIkon.js";
 
 const getEksternvarslingStatus = (kanaler: string[]) => {
-  const translate = useIntl();
+  const language = useContext(LanguageContext);
   if (kanaler.includes("SMS") && kanaler.includes("EPOST")) {
-    return translate.formatMessage({ id: "varsel.eksternt-varslet-epost-sms" });
+    return text.varselEksterntVarsletEpostOgSMS[language];
   } else if (kanaler.includes("SMS")) {
-    return translate.formatMessage({ id: "varsel.eksternt-varslet-sms" });
+    return text.varselEksterntVarsletSMS[language];
   } else if (kanaler.includes("EPOST")) {
-    return translate.formatMessage({ id: "varsel.eksternt-varslet-epost" });
+    return text.varselEksterntVarsletEpost[language];
   }
 };
 
 const ArkiverButton = ({ varsel }: { varsel: Varsel }) => {
-  const translate = useIntl();
-
+  const language = useContext(LanguageContext);
   const removeBeskjed = useStore(selectRemoveBeskjed);
 
   const handleOnClick = () => {
@@ -37,14 +37,13 @@ const ArkiverButton = ({ varsel }: { varsel: Varsel }) => {
 
   return (
     <Button variant="tertiary" size="xsmall" onClick={handleOnClick}>
-      {translate.formatMessage({ id: "arkiver.knapp" })}
+      {text.arkiverKnapp[language]}
     </Button>
   );
 };
 
 const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
-  //TODO: Legge inn stepup-tekst i alle språk.
-  const translate = useIntl();
+  const language = useContext(LanguageContext);
 
   const dato = formatToReadableDate(varsel.forstBehandlet);
 
@@ -66,9 +65,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
   return isArkiverbar(varsel.link) ? (
     <div className={style.varsel}>
       <div className={style.contentWrapper}>
-        <BodyShort>
-          {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
-        </BodyShort>
+        <BodyShort>{varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}</BodyShort>
 
         <BodyLong size="small" className={style.dato}>
           {dato}
@@ -99,7 +96,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
     >
       <div className={style.contentWrapper}>
         <BodyShort className={style.klikkbarTittel}>
-          {varsel.isMasked ? translate.formatMessage({ id: "beskjed.maskert.tekst" }) : varsel.tekst}
+          {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
         </BodyShort>
 
         <BodyLong size="small" className={style.dato}>
