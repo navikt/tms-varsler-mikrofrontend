@@ -30,69 +30,18 @@ export interface Varsler {
   innbokser: Array<Varsel>;
 }
 
-const VarselLists = ({ varsler }: { varsler: Varsler }) => {
-  const language = useContext(LanguageContext);
-  const beskjeder = useStore(selectBeskjederList);
-  const hasNoOppgaver = varsler?.oppgaver.length === 0;
-  const hasNoBeskjeder = varsler?.beskjeder.length === 0 && varsler?.innbokser.length === 0;
-
-  return (
-    <>
-      <div>
-        <ul className={style.varselList}>
-          <BodyShort size="medium" spacing>
-            {text.oppgaverTittel[language]}
-          </BodyShort>
-          {hasNoOppgaver ? (
-            <IngenAvType type="OPPGAVE" />
-          ) : (
-            varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
-              <li key={o.eventId}>
-                <VarselBoks varsel={o} type="OPPGAVE" />
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
-      <div>
-        <ul className={`${style.varselList} ${style.beskjedList}`}>
-          <BodyShort size="medium" spacing>
-            {text.beskjederTittel[language]}
-          </BodyShort>
-          {hasNoBeskjeder ? (
-            <IngenAvType type="BESKJED" />
-          ) : (
-            <>
-              {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
-                <li key={b.eventId}>
-                  <VarselBoks varsel={b} type="BESKJED" />
-                </li>
-              ))}
-              {varsler?.innbokser.sort(sortByEventTidspunkt).map((i: Varsel) => (
-                <li key={i.eventId}>
-                  <VarselBoks varsel={i} type="INNBOKS" />
-                </li>
-              ))}
-            </>
-          )}
-        </ul>
-      </div>
-      <div className={style.tidligereVarslerLenke}>
-        <TidligereVarslerInngang />
-      </div>
-    </>
-  );
-};
-
 const MainPage = () => {
-  const language = useContext(LanguageContext);
+  const beskjeder = useStore(selectBeskjederList);
   const addVarsler = useStore(selectAddVarsler);
   const { data: varsler, isLoading: isLoadingVarsler } = useQuery(varslerUrl, fetcher, {
     onSuccess: addVarsler,
   });
 
-  const hasNoVarsler =
-    varsler?.oppgaver.length === 0 && varsler?.beskjeder.length === 0 && varsler?.innbokser.length === 0;
+  const language = useContext(LanguageContext);
+
+  const hasNoOppgaver = varsler?.oppgaver.length === 0;
+  const hasNoBeskjeder = varsler?.beskjeder.length === 0 && varsler?.innbokser.length === 0;
+  const hasNoVarsler = hasNoOppgaver && hasNoBeskjeder;
 
   if (isLoadingVarsler) {
     return null;
@@ -104,7 +53,54 @@ const MainPage = () => {
         <Heading size={"large"}>{text.varslerTittel[language]}</Heading>
       </div>
       <div className={style.varslerContainer}>
-        {hasNoVarsler ? <IngenVarsler /> : <VarselLists varsler={varsler} />}
+        {hasNoVarsler ? (
+          <IngenVarsler />
+        ) : (
+          <>
+            <div>
+              <ul className={style.varselList}>
+                <BodyShort size="medium" spacing>
+                  {text.oppgaverTittel[language]}
+                </BodyShort>
+                {hasNoOppgaver ? (
+                  <IngenAvType type="OPPGAVE" />
+                ) : (
+                  varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
+                    <li key={o.eventId}>
+                      <VarselBoks varsel={o} type="OPPGAVE" />
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+            <div>
+              <ul className={`${style.varselList} ${style.beskjedList}`}>
+                <BodyShort size="medium" spacing>
+                  {text.beskjederTittel[language]}
+                </BodyShort>
+                {hasNoBeskjeder ? (
+                  <IngenAvType type="BESKJED" />
+                ) : (
+                  <>
+                    {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
+                      <li key={b.eventId}>
+                        <VarselBoks varsel={b} type="BESKJED" />
+                      </li>
+                    ))}
+                    {varsler?.innbokser.sort(sortByEventTidspunkt).map((i: Varsel) => (
+                      <li key={i.eventId}>
+                        <VarselBoks varsel={i} type="INNBOKS" />
+                      </li>
+                    ))}
+                  </>
+                )}
+              </ul>
+            </div>
+            <div className={style.tidligereVarslerLenke}>
+              <TidligereVarslerInngang />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
