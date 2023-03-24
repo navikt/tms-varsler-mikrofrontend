@@ -54,4 +54,19 @@ export const text = {
     nn: "Vi varslar deg når noko skjer",
     en: "We will notify you when something happens.",
   },
+  varselEksterntVarsletSMS: {
+    nb: "Varslet på SMS",
+    nn: "Varslet på SMS",
+    en: "Notified by SMS",
+  },
+  varselEksterntVarsletEpost: {
+    nb: "Varslet på e-post",
+    nn: "Varslet på e-post",
+    en: "Notified by e-mail",
+  },
+  varselEksterntVarsletEpostOgSMS: {
+    nb: "Varslet på e-post og SMS",
+    nn: "Varslet på e-post og SMS",
+    en: "Notified by e-mail and SMS",
+  },
 };

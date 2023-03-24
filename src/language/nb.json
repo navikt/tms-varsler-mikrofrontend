@@ -1,0 +1,16 @@
+{
+  "varsler.tittel": "Varsler",
+  "oppgaver.tittel": "Oppgaver",
+  "oppgave.ingen": "Du har ingen oppgaver",
+  "beskjeder.tittel": "Beskjeder",
+  "beskjed.ingen": "Du har ingen beskjeder",
+  "oppgave.maskert.tekst": "Du har fått en oppgave, logg inn med høyere sikkerhetsnivå for å se oppgaven.",
+  "beskjed.maskert.tekst": "Du har fått en melding, logg inn med høyere sikkerhetsnivå for å se meldingen.",
+  "inngang.tidligere-varsler": "Tidligere varsler",
+  "arkiver.knapp": "Arkiver",
+  "varsler.tom.liste": "Du har ingen nye varsler",
+  "varsler.tom.liste.ingress": "Vi varsler deg når noe skjer",
+  "varsel.eksternt-varslet-sms": "Varslet på SMS",
+  "varsel.eksternt-varslet-epost": "Varslet på e-post",
+  "varsel.eksternt-varslet-epost-sms": "Varslet på e-post og SMS"
+}

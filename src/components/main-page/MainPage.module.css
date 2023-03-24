@@ -3,20 +3,13 @@
   height: 100%;
   height: auto;
   min-height: 70%;
-}
-
-.headerBackground {
-  background-color: var(--a-bg-default);
+  background-color: var(--a-surface-subtle);
 }
 
 .headerWrapper {
-  padding: 16px 0;
+  padding-top: 16px;
   max-width: 912px;
   margin: 0 auto;
-}
-
-.varslerBackground {
-  background-color: var(--a-surface-subtle);
 }
 
 .varslerContainer {
@@ -24,22 +17,18 @@
   margin: 0 auto;
 }
 
-.varsler {
+.varselList {
   list-style-type: none;
   padding: 0;
-  padding-top: 40px;
+  padding-top: 24px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.oppgaver {
-  margin-bottom: 40px;
+.beskjedList {
+  margin-bottom: 24px;
 }
 
-.overskrift {
-  margin-bottom: 16px !important;
-}
-
-.varslerLenke {
+.tidligereVarslerLenke {
   padding-bottom: 64px;
 }

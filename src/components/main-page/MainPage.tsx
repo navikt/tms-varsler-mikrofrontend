@@ -7,7 +7,7 @@ import { varslerUrl } from "../../api/urls";
 import { selectAddVarsler, selectBeskjederList } from "../../store/selectors.js";
 import useStore from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
-import { Heading } from "@navikt/ds-react";
+import { BodyShort, Heading } from "@navikt/ds-react";
 import VarselBoks from "../varsler/varsel-boks/VarselBoks";
 import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
 import IngenVarsler from "../varsler/ingen-varsler/IngenVarsler";
@@ -20,6 +20,8 @@ export interface Varsel {
   tekst: string;
   link: string;
   isMasked: boolean;
+  eksternVarslingSendt: boolean;
+  eksternVarslingKanaler: string[];
 }
 
 export interface Varsler {
@@ -47,62 +49,58 @@ const MainPage = () => {
 
   return (
     <div className={style.pageWrapper}>
-      <div className={style.headerBackground}>
-        <div className={style.headerWrapper}>
-          <Heading size={"large"}>{text.varslerTittel[language]}</Heading>
-        </div>
+      <div className={style.headerWrapper}>
+        <Heading size={"large"}>{text.varslerTittel[language]}</Heading>
       </div>
-      <div className={style.varslerBackground}>
-        <div className={style.varslerContainer}>
-          {hasNoVarsler ? (
-            <IngenVarsler />
-          ) : (
-            <>
-              <div>
-                <ul className={style.varsler}>
-                  <Heading className={style.overskrift} size="medium" level="2" spacing>
-                    {text.oppgaverTittel[language]}
-                  </Heading>
-                  {hasNoOppgaver ? (
-                    <IngenAvType type="OPPGAVE" />
-                  ) : (
-                    varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
-                      <li key={o.eventId}>
-                        <VarselBoks varsel={o} type="OPPGAVE" />
+      <div className={style.varslerContainer}>
+        {hasNoVarsler ? (
+          <IngenVarsler />
+        ) : (
+          <>
+            <div>
+              <ul className={style.varselList}>
+                <BodyShort size="medium" spacing>
+                  {text.oppgaverTittel[language]}
+                </BodyShort>
+                {hasNoOppgaver ? (
+                  <IngenAvType type="OPPGAVE" />
+                ) : (
+                  varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
+                    <li key={o.eventId}>
+                      <VarselBoks varsel={o} type="OPPGAVE" />
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+            <div>
+              <ul className={`${style.varselList} ${style.beskjedList}`}>
+                <BodyShort size="medium" spacing>
+                  {text.beskjederTittel[language]}
+                </BodyShort>
+                {hasNoBeskjeder ? (
+                  <IngenAvType type="BESKJED" />
+                ) : (
+                  <>
+                    {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
+                      <li key={b.eventId}>
+                        <VarselBoks varsel={b} type="BESKJED" />
                       </li>
-                    ))
-                  )}
-                </ul>
-              </div>
-              <div>
-                <ul className={`${style.varsler} ${style.oppgaver}`}>
-                  <Heading className={style.overskrift} size="medium" level="2" spacing>
-                    {text.beskjederTittel[language]}
-                  </Heading>
-                  {hasNoBeskjeder ? (
-                    <IngenAvType type="BESKJED" />
-                  ) : (
-                    <>
-                      {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
-                        <li key={b.eventId}>
-                          <VarselBoks varsel={b} type="BESKJED" />
-                        </li>
-                      ))}
-                      {varsler?.innbokser.sort(sortByEventTidspunkt).map((i: Varsel) => (
-                        <li key={i.eventId}>
-                          <VarselBoks varsel={i} type="INNBOKS" />
-                        </li>
-                      ))}
-                    </>
-                  )}
-                </ul>
-              </div>
-              <div className={style.varslerLenke}>
-                <TidligereVarslerInngang />
-              </div>
-            </>
-          )}
-        </div>
+                    ))}
+                    {varsler?.innbokser.sort(sortByEventTidspunkt).map((i: Varsel) => (
+                      <li key={i.eventId}>
+                        <VarselBoks varsel={i} type="INNBOKS" />
+                      </li>
+                    ))}
+                  </>
+                )}
+              </ul>
+            </div>
+            <div className={style.tidligereVarslerLenke}>
+              <TidligereVarslerInngang />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
