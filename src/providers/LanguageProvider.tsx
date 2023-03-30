@@ -9,9 +9,15 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguage] = useState(defualtLanguage);
 
   useEffect(() => {
-    window.addEventListener("storage", () => {
+    const handleLanguageEvent = () => {
       setLanguage((sessionStorage.getItem("language") ?? "nb") as Language);
-    });
+    };
+
+    window.addEventListener("language", handleLanguageEvent);
+
+    return () => {
+      window.removeEventListener("language", handleLanguageEvent);
+    };
   }, []);
 
   return <LanguageContext.Provider value={language}>{children}</LanguageContext.Provider>;
