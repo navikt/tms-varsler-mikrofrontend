@@ -21,13 +21,13 @@ const API_URL = {
 
 const DITTNAV_API_URL = {
   local: "http://localhost:3000",
-  development: "https://www.dev.nav.no/dittnav-api",
+  development: "https://www.intern.dev.nav.no/dittnav-api",
   production: "https://www.nav.no/dittnav-api",
 };
 
 const MIN_SIDE_URL = {
   local: "http://localhost:3000/minside",
-  development: "https://www.dev.nav.no/minside",
+  development: "https://www.intern.dev.nav.no/minside",
   production: "https://www.nav.no/minside",
 };
 
