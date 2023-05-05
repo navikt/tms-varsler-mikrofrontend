@@ -1,7 +1,6 @@
 import React from "react";
 import MainPage from "./components/main-page/MainPage";
 import style from "./App.module.css";
-import "@navikt/ds-css";
 
 function App() {
   return (
