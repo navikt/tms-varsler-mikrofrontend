@@ -13,12 +13,6 @@ export const getEnvironment = () => {
   return "local";
 };
 
-const API_URL = {
-  local: "http://localhost:3000/api/endpoint",
-  development: "http://localhost:3000/api/endpoint",
-  production: "https://person.nav.no/api/endpoint",
-};
-
 const MIN_SIDE_URL = {
   local: "http://localhost:3000/minside",
   development: "https://www.intern.dev.nav.no/minside",
@@ -37,7 +31,6 @@ const MIN_SIDE_PROXY_URL = {
   production: "https://www.nav.no/tms-min-side-proxy",
 };
 
-export const apiUrl = API_URL[getEnvironment()];
 export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
 export const stepUpUrl = `${LOGINSERVICE_URL[getEnvironment()]}&redirect=${minSideUrl}/varsler`;
 const minSideProxyUrl = MIN_SIDE_PROXY_URL[getEnvironment()];
