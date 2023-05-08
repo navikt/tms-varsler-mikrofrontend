@@ -26,7 +26,9 @@ const MIN_SIDE_PROXY_URL = {
 };
 
 export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
-export const stepUpUrl = `${MIN_SIDE_PROXY_URL[getEnvironment()]}/login?level=Level4&redirect=${minSideUrl}/varsler`;
+export const stepUpUrl = `${
+  MIN_SIDE_PROXY_URL[getEnvironment()]
+}/login?level=Level4&redirect_uri=${minSideUrl}/varsler`;
 const minSideProxyUrl = MIN_SIDE_PROXY_URL[getEnvironment()];
 
 export const postDoneUrl = `${minSideProxyUrl}/eventaggregator/beskjed/done`;
