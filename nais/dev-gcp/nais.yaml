@@ -11,14 +11,14 @@ spec:
   image: {{image}}
   port: 7500
   liveness:
-    path: /tms-varsler/internal/isAlive
+    path: /tms-varsler-mikrofrontend/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /tms-varsler/internal/isReady
+    path: /tms-varsler-mikrofrontend/internal/isReady
     initialDelay: 10
   prometheus:
     enabled: true
-    path: /tms-varsler/internal/metrics
+    path: /tms-varsler-mikrofrontend/internal/metrics
   replicas:
     min: 2
     max: 4
