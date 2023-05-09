@@ -36,7 +36,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => ({
       entry: resolve(__dirname, "src/Mikrofrontend.tsx"),
       name: "tms-varsler",
       formats: ["es"],
-      fileName: () => `tms-varsler.js`,
+      fileName: () => `tms-varsler-mikrofrontend.js`,
     },
   },
   test: {
