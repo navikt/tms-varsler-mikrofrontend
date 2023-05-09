@@ -26,7 +26,7 @@ spec:
     min: 2
     max: 4
   ingresses:
-    - "https://person.intern.nav.no/tms-varsler"
+    - "https://www.nav.no/tms-varsler-mikrofrontend"
     - "https://www.nav.no/tms-varsler"
   resources:
     limits:
