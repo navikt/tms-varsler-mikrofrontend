@@ -27,7 +27,6 @@ spec:
     max: 4
   ingresses:
     - "https://www.nav.no/tms-varsler-mikrofrontend"
-    - "https://www.nav.no/tms-varsler"
   resources:
     limits:
       cpu: "3"
