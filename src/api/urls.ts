@@ -19,12 +19,6 @@ const MIN_SIDE_URL = {
   production: "https://www.nav.no/minside",
 };
 
-const LOGINSERVICE_URL = {
-  local: "http://localhost:3000/loginservice",
-  development: "https://loginservice.dev.nav.no/login?level=Level4",
-  production: "https://loginservice.nav.no/login?level=Level4",
-};
-
 const MIN_SIDE_PROXY_URL = {
   local: "http://localhost:3000",
   development: "https://www.intern.dev.nav.no/tms-min-side-proxy",
@@ -32,7 +26,9 @@ const MIN_SIDE_PROXY_URL = {
 };
 
 export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
-export const stepUpUrl = `${LOGINSERVICE_URL[getEnvironment()]}&redirect=${minSideUrl}/varsler`;
+export const stepUpUrl = `${
+  MIN_SIDE_PROXY_URL[getEnvironment()]
+}/login?level=Level4&redirect_uri=${minSideUrl}/varsler`;
 const minSideProxyUrl = MIN_SIDE_PROXY_URL[getEnvironment()];
 
 export const postDoneUrl = `${minSideProxyUrl}/eventaggregator/beskjed/done`;
