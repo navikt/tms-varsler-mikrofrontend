@@ -33,12 +33,7 @@ const ArkiverKnapp = ({ eventId, setIsHover, varsel }: Props) => {
   };
 
   return (
-    <button
-      className={style.arkiverBtn}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleOnClick}
-    >
+    <button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleOnClick}>
       {text.arkiverKnapp[language]}
     </button>
   );

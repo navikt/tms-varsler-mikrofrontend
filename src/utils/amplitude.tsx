@@ -10,14 +10,14 @@ export const initializeAmplitude = () => {
   });
 };
 
-export function logAmplitudeEvent(komponent: string, destinasjon?: string) {
+export function logAmplitudeEvent(label: string, destinasjon?: string) {
   if (!destinasjon) {
     amplitude.getInstance().logEvent("navigere", {
-      komponent,
+      label,
     });
   } else {
     amplitude.getInstance().logEvent("navigere", {
-      komponent,
+      label,
       destinasjon,
     });
   }
