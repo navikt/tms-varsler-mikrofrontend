@@ -31,7 +31,7 @@ const ArkiverButton = ({ varsel }: { varsel: Varsel }) => {
 
   const handleOnClick = () => {
     postDone({ eventId: varsel.eventId });
-    logAmplitudeEvent("Arkivert beskjed");
+    logAmplitudeEvent("Varsler underside - Arkivert beskjed");
     removeBeskjed(varsel);
   };
 
@@ -57,7 +57,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
     if (type === "BESKJED" && !varsel.isMasked) {
       postDone({ eventId: varsel.eventId });
     }
-    logAmplitudeEvent(type, varsel.link);
+    logAmplitudeEvent("Varsler underside - " + type, varsel.link);
   };
 
   setLocaleDate();
