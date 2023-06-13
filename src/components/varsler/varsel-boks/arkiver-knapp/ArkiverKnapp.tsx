@@ -4,7 +4,7 @@ import { text } from "../../../../language/text";
 import { postDone } from "../../../../api/api";
 import useStore from "../../../../store/store.js";
 import { selectRemoveBeskjed } from "../../../../store/selectors.js";
-import { logAmplitudeEvent } from "../../../../utils/amplitude";
+import { logAmplitudeEvent, logArkiverEvent } from "../../../../utils/amplitude";
 import style from "./ArkiverKnapp.module.css";
 import { Varsel } from "../../../main-page/MainPage";
 
@@ -20,7 +20,7 @@ const ArkiverKnapp = ({ eventId, setIsHover, varsel }: Props) => {
 
   const handleOnClick = () => {
     postDone({ eventId: eventId });
-    logAmplitudeEvent("Arkivert beskjed");
+    logArkiverEvent();
     removeBeskjed(varsel);
   };
 
