@@ -57,7 +57,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
     if (type === "BESKJED" && !varsel.isMasked) {
       postDone({ eventId: varsel.eventId });
     }
-    logEvent(type === "BESKJED" ? "varsel-beskjed" : "varsel-oppgave", "varsel", undefined, varsel.link);
+    logEvent(type === "BESKJED" ? "varsel-beskjed" : "varsel-oppgave", "varsler", undefined, varsel.link);
   };
 
   setLocaleDate();
