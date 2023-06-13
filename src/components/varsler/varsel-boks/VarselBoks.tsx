@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { LanguageContext } from "../../../providers/LanguageProvider";
 import { text } from "../../../language/text";
 import { Next } from "@navikt/ds-icons";
 import { Tag, Button, BodyShort, BodyLong } from "@navikt/ds-react";
 import { postDone } from "../../../api/api.js";
-import { logAmplitudeEvent } from "../../../utils/amplitude.js";
+import { logArkiverEvent, logEvent } from "../../../utils/amplitude.js";
 import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
 import { Varsel } from "../../main-page/MainPage.js";
 import style from "./VarselBoks.module.css";
@@ -31,7 +31,7 @@ const ArkiverButton = ({ varsel }: { varsel: Varsel }) => {
 
   const handleOnClick = () => {
     postDone({ eventId: varsel.eventId });
-    logAmplitudeEvent("Varsler underside - Arkivert beskjed");
+    logArkiverEvent();
     removeBeskjed(varsel);
   };
 
@@ -57,7 +57,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
     if (type === "BESKJED" && !varsel.isMasked) {
       postDone({ eventId: varsel.eventId });
     }
-    logAmplitudeEvent("Varsler underside - " + type, varsel.link);
+    logEvent(type === "BESKJED" ? "varsel-beskjed" : "varsel-oppgave", "varsel", undefined, varsel.link);
   };
 
   setLocaleDate();

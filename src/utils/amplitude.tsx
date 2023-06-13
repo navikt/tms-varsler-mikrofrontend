@@ -10,15 +10,28 @@ export const initializeAmplitude = () => {
   });
 };
 
-export function logAmplitudeEvent(komponent: string, destinasjon?: string) {
+export function logArkiverEvent() {
+  amplitude.getInstance().logEvent("arkivert-beskjed", {
+    app: "tms-varsler-mikrofrontend",
+    komponent: "varsler-beskjed-arkiverbar",
+    kategori: "varsler",
+  });
+}
+
+export function logEvent(komponent: string, kategori: string, lenketekst?: string, destinasjon?: string) {
   if (!destinasjon) {
     amplitude.getInstance().logEvent("navigere", {
-      komponent,
+      app: "tms-varsler-mikrofrontend",
+      komponent: komponent,
+      kategori: kategori,
+      lenketekst: lenketekst,
     });
   } else {
     amplitude.getInstance().logEvent("navigere", {
-      komponent,
-      destinasjon,
+      app: "tms-varsler-mikrofrontend",
+      komponent: komponent,
+      kategori: kategori,
+      destinasjon: destinasjon,
     });
   }
 }
