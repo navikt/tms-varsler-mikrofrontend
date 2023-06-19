@@ -1,6 +1,6 @@
 export default [
   {
-    url: "/varsel/tms-varsel-api/aktive",
+    url: "/api/aktive",
     method: "get",
     response: () => {
       return {
