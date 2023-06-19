@@ -27,8 +27,8 @@ const MIN_SIDE_PROXY_URL = {
 
 const TMS_VARSEL_API_URL = {
   local: "http://localhost:3000/api",
-  development: "https://www.intern.dev.nav.no/tms-varsela-api",
-  production: "https://www.nav.no/tms-varsela-api",
+  development: "https://www.intern.dev.nav.no/tms-varsel-api",
+  production: "https://www.nav.no/tms-varsel-api",
 };
 
 const tmsVarselApiUrl = TMS_VARSEL_API_URL[getEnvironment()];
