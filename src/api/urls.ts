@@ -25,13 +25,18 @@ const MIN_SIDE_PROXY_URL = {
   production: "https://www.nav.no/tms-min-side-proxy",
 };
 
-export const minSideUrl = MIN_SIDE_URL[getEnvironment()];
+const TMS_VARSEL_API_URL = {
+  local: "http://localhost:3000/api",
+  development: "https://www.intern.dev.nav.no/tms-varsel-api",
+  production: "https://www.nav.no/tms-varsel-api",
+};
+
+const tmsVarselApiUrl = TMS_VARSEL_API_URL[getEnvironment()];
+const minSideUrl = MIN_SIDE_URL[getEnvironment()];
 export const stepUpUrl = `${
   MIN_SIDE_PROXY_URL[getEnvironment()]
 }/login?level=Level4&redirect_uri=${minSideUrl}/varsler`;
-const minSideProxyUrl = MIN_SIDE_PROXY_URL[getEnvironment()];
 
-export const postDoneUrl = `${minSideProxyUrl}/eventaggregator/beskjed/done`;
-
-export const varslerUrl = `${minSideProxyUrl}/varsel/tms-varsel-api/aktive`;
+export const postDoneUrl = `${tmsVarselApiUrl}/beskjed/inaktiver`;
+export const varslerUrl = `${tmsVarselApiUrl}/aktive`;
 export const tidligereVarslerUrl = `${minSideUrl}/tidligere-varsler`;
