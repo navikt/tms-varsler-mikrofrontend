@@ -21,8 +21,8 @@
     "zustand": "^4.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "12.1.2",
-    "@testing-library/user-event": "13.5.0",
+    "@testing-library/react": "14.0.0",
+    "@testing-library/user-event": "14.4.3",
     "@types/amplitude-js": "^8.16.2",
     "@types/react": "18.2.5",
     "@types/react-dom": "18.2.3",
@@ -44,7 +44,8 @@
     "vite": "2.9.13",
     "vite-plugin-css-injected-by-js": "1.4.0",
     "vite-plugin-mock": "2.9.6",
-    "vitest": "0.13.1"
+    "vitest": "0.26.1",
+    "vitest-axe": "0.1.0"
   },
   "prettier": {
     "printWidth": 120
