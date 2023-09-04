@@ -32,6 +32,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => ({
     },
   ],
   build: {
+    manifest: true,
     rollupOptions: {
       input: {
         "tms-varsler-mikrofrontend": resolve(__dirname, "src/Mikrofrontend.tsx"),
