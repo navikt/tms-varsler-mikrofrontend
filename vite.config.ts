@@ -32,11 +32,15 @@ export default ({ command }: ConfigEnv): UserConfigExport => ({
     },
   ],
   build: {
-    lib: {
-      entry: resolve(__dirname, "src/Mikrofrontend.tsx"),
-      name: "tms-varsler",
-      formats: ["es"],
-      fileName: () => `tms-varsler-mikrofrontend.js`,
+    rollupOptions: {
+      input: {
+        "tms-varsler-mikrofrontend": resolve(__dirname, "src/Mikrofrontend.tsx"),
+      },
+      preserveEntrySignatures: "exports-only",
+      output: {
+        entryFileNames: "[name].[hash].js",
+        format: "esm",
+      },
     },
   },
   test: {
