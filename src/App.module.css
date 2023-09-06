@@ -9,4 +9,5 @@
 
 main {
   max-width: none !important;
+  background-color: var(--a-surface-subtle) !important;
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../../../providers/LanguageProvider";
 import { text } from "../../../language/text";
-import { Next } from "@navikt/ds-icons";
+import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { Tag, Button, BodyShort, BodyLong } from "@navikt/ds-react";
 import { postDone } from "../../../api/api.js";
 import { logArkiverEvent, logEvent } from "../../../utils/amplitude.js";
@@ -112,7 +112,12 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
               </Tag>
             )}
           </div>
-          <Next className={style.chevron} onResize={undefined} onResizeCapture={undefined} />
+          <ChevronRightIcon
+            aria-hidden={true}
+            className={style.chevron}
+            onResize={undefined}
+            onResizeCapture={undefined}
+          />
         </div>
       </div>
     </a>
