@@ -112,7 +112,12 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
               </Tag>
             )}
           </div>
-          <ChevronRightIcon className={style.chevron} onResize={undefined} onResizeCapture={undefined} />
+          <ChevronRightIcon
+            aria-hidden={true}
+            className={style.chevron}
+            onResize={undefined}
+            onResizeCapture={undefined}
+          />
         </div>
       </div>
     </a>
