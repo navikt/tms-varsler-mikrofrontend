@@ -1,17 +1,16 @@
-import React, { useContext } from "react";
-import { LanguageContext } from "../../providers/LanguageProvider";
-import { text } from "../../language/text";
+import { Heading } from "@navikt/ds-react";
+import { useContext } from "react";
 import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
 import { varslerUrl } from "../../api/urls";
+import { text } from "../../language/text";
+import { LanguageContext } from "../../providers/LanguageProvider";
 import { selectAddVarsler, selectBeskjederList } from "../../store/selectors.js";
 import useStore from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
-import { BodyShort, Heading } from "@navikt/ds-react";
-import VarselBoks from "../varsler/varsel-boks/VarselBoks";
-import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
 import IngenVarsler from "../varsler/ingen-varsler/IngenVarsler";
-import IngenAvType from "../varsler/ingen-av-type/IngenAvType";
+import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
+import VarselBoks from "../varsler/varsel-boks/VarselBoks";
 import style from "./MainPage.module.css";
 
 export interface Varsel {

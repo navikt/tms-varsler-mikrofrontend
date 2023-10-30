@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   background-color: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 8px;
   width: 600px;
   color: #272727;
@@ -29,8 +29,28 @@
   transform: translate(3px, 0);
 }
 
+.tittel {
+  padding: 0.25rem 0;
+}
+
 .klikkbarTittel {
   font-weight: bolder !important;
+  padding: 0.25rem 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.varselTypeContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chevronContainer {
+  display: flex;
+  align-items: center;
 }
 
 .metadataOgKnapp {
@@ -40,22 +60,16 @@
   width: 100%;
 }
 
-.ikonOgTag {
-  display: flex;
-  column-gap: 8px;
-  margin-top: 12px;
-}
-
-.varselTag {
-  border: none !important;
+.eksterntVarslet {
+  color: var(--a-text-subtle);
 }
 
 .dato {
-  color: #707070;
+  color: var(--a-text-subtle);
 }
 
 .chevron {
-  color: #707070;
+  color: var(--a-text-subtle);
   width: 21px;
   min-width: 21px;
   height: 21px;

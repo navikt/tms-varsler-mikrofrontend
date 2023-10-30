@@ -6,7 +6,7 @@ export default [
       return {
         oppgaver: [
           {
-            forstBehandlet: "2020-02-22T08:53:31.607Z",
+            forstBehandlet: "2023-10-30T08:53:31.607Z",
             eventId: "1584093211607",
             tekst: "Svar fra veilederen din i innboksen: Hei, nå har jeg sjekket om...",
             link: "https://enNyLenke",
@@ -61,7 +61,7 @@ export default [
             forstBehandlet: "2020-02-22T08:53:31.607Z",
             eventId: "1584093211607",
             tekst: "Svar fra veilederen din i innboksen: Hei, nå har jeg sjekket om...",
-            link: "https://enNyLenke",
+            link: null,
             isMasked: false,
             eksternVarslingSendt: true,
             eksternVarslingKanaler: ["EPOST"],
