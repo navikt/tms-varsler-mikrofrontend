@@ -70,7 +70,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
         <div className={styles.header}>
           <div className={styles.varselTypeContainer}>
             {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
-            <BodyLong>{varselTypeText}</BodyLong>
+            <BodyShort>{varselTypeText}</BodyShort>
           </div>
           <BodyShort size="small" className={styles.dato}>
             {dato}
@@ -99,7 +99,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
         <div className={styles.header}>
           <div className={styles.varselTypeContainer}>
             {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
-            <BodyLong>{varselTypeText}</BodyLong>
+            <BodyShort>{varselTypeText}</BodyShort>
           </div>
           <div className={styles.chevronContainer}>
             <BodyShort size="small" className={styles.dato}>

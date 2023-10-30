@@ -10,7 +10,7 @@ export const setLocaleDate = () => {
 };
 
 export const formatToReadableDate = (date: string) => {
-  return dayjs(date).format("DD.MM.YY, kl HH.mm");
+  return dayjs(date).format("DD.MM.YY, kl. HH.mm");
 };
 
 const i18n = {

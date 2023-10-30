@@ -11,7 +11,9 @@
   margin-bottom: 8px;
   width: 600px;
   color: #272727;
-  border: solid 1px var(--a-border-subtle);
+  box-shadow:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.15),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
 .klikkbartVarsel {
@@ -20,8 +22,8 @@
 }
 
 .klikkbartVarsel:hover {
-  background-color: var(--a-surface-hover);
   cursor: pointer;
+  box-shadow: var(--a-shadow-focus);
 }
 
 .klikkbartVarsel:hover .chevron {
