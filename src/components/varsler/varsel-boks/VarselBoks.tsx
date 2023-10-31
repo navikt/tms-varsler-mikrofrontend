@@ -113,7 +113,11 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
           {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
         </BodyLong>
 
-        {eksternVarslingStatus && <BodyShort className={styles.eksterntVarslet}>{eksternVarslingStatus}</BodyShort>}
+        {eksternVarslingStatus && (
+          <BodyShort size="small" className={styles.eksterntVarslet}>
+            {eksternVarslingStatus}
+          </BodyShort>
+        )}
       </div>
     </a>
   );
