@@ -70,7 +70,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
         <div className={styles.header}>
           <div className={styles.varselTypeContainer}>
             {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
-            <BodyShort>{varselTypeText}</BodyShort>
+            <BodyShort className={styles.varselTypeText}>{varselTypeText}</BodyShort>
           </div>
           <BodyShort size="small" className={styles.dato}>
             {dato}
@@ -99,7 +99,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
         <div className={styles.header}>
           <div className={styles.varselTypeContainer}>
             {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
-            <BodyShort>{varselTypeText}</BodyShort>
+            <BodyShort className={styles.varselTypeText}>{varselTypeText}</BodyShort>
           </div>
           <div className={styles.chevronContainer}>
             <BodyShort size="small" className={styles.dato}>
@@ -109,7 +109,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
           </div>
         </div>
 
-        <BodyLong className={styles.klikkbarTittel}>
+        <BodyLong className={`${styles.tittel} ${styles.klikkbarTittel}`}>
           {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
         </BodyLong>
 

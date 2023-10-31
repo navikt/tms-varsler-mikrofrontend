@@ -37,7 +37,6 @@
 
 .klikkbarTittel {
   font-weight: bolder !important;
-  padding: 0.25rem 0;
 }
 
 .header {
@@ -80,5 +79,21 @@
 @media (max-width: 600px) {
   .varsel {
     width: 100%;
+  }
+
+  .dato {
+    font-size: 14px;
+  }
+
+  .tittel {
+    font-size: 16px;
+  }
+
+  .varselTypeText {
+    font-size: 16px;
+  }
+
+  .eksterntVarslet {
+    font-size: 14px;
   }
 }
