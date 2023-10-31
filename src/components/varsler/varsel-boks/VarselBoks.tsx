@@ -83,7 +83,11 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
 
         <div className={styles.metadataOgKnapp}>
           <div>
-            {eksternVarslingStatus && <BodyShort className={styles.eksterntVarslet}>{eksternVarslingStatus}</BodyShort>}
+            {eksternVarslingStatus && (
+              <BodyShort size="small" className={styles.eksterntVarslet}>
+                {eksternVarslingStatus}
+              </BodyShort>
+            )}
           </div>
           <ArkiverButton varsel={varsel} />
         </div>
