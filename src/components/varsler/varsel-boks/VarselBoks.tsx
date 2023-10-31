@@ -109,7 +109,7 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
           </div>
         </div>
 
-        <BodyLong className={`${styles.tittel} ${styles.klikkbarTittel}`}>
+        <BodyLong className={styles.tittel}>
           {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
         </BodyLong>
 
