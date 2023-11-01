@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import { LanguageContext } from "../../../providers/LanguageProvider";
-import { text } from "../../../language/text";
 import { ChevronRightIcon } from "@navikt/aksel-icons";
-import { Tag, Button, BodyShort, BodyLong } from "@navikt/ds-react";
+import { BodyLong, BodyShort, Button } from "@navikt/ds-react";
+import { useContext } from "react";
 import { postDone } from "../../../api/api.js";
-import { logArkiverEvent, logEvent } from "../../../utils/amplitude.js";
-import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
-import { Varsel } from "../../main-page/MainPage.js";
-import style from "./VarselBoks.module.css";
 import { stepUpUrl } from "../../../api/urls";
-import useStore from "../../../store/store.js";
-import { selectRemoveBeskjed } from "../../../store/selectors.js";
 import BeskjedIkon from "../../../ikoner/BeskjedIkon.js";
 import OppgaveIkon from "../../../ikoner/OppgaveIkon.js";
+import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
+import { text } from "../../../language/text";
+import { LanguageContext } from "../../../providers/LanguageProvider";
+import { selectRemoveBeskjed } from "../../../store/selectors.js";
+import useStore from "../../../store/store.js";
+import { logArkiverEvent, logEvent } from "../../../utils/amplitude.js";
+import { Varsel } from "../../main-page/MainPage.js";
+import styles from "./VarselBoks.module.css";
 
 const getEksternvarslingStatus = (kanaler: string[]) => {
   const language = useContext(LanguageContext);
@@ -53,6 +53,8 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
 
   const eksternVarslingStatus = getEksternvarslingStatus(varsel.eksternVarslingKanaler);
 
+  const varselTypeText = isOppgave ? text.oppgave[language] : text.beskjed[language];
+
   const handleOnClick = () => {
     if (type === "BESKJED" && !varsel.isMasked) {
       postDone({ eventId: varsel.eventId });
@@ -63,21 +65,28 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
   setLocaleDate();
 
   return isArkiverbar(varsel.link) ? (
-    <div className={style.varsel}>
-      <div className={style.contentWrapper}>
-        <BodyShort>{varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}</BodyShort>
+    <div className={styles.varsel}>
+      <div className={styles.contentWrapper}>
+        <div className={styles.header}>
+          <div className={styles.varselTypeContainer}>
+            {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
+            <BodyShort className={styles.varselTypeText}>{varselTypeText}</BodyShort>
+          </div>
+          <BodyShort size="small" className={styles.dato}>
+            {dato}
+          </BodyShort>
+        </div>
 
-        <BodyLong size="small" className={style.dato}>
-          {dato}
+        <BodyLong className={styles.tittel}>
+          {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
         </BodyLong>
 
-        <div className={style.metadataOgKnapp}>
-          <div className={style.ikonOgTag}>
-            {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
+        <div className={styles.metadataOgKnapp}>
+          <div>
             {eksternVarslingStatus && (
-              <Tag variant="neutral" size="xsmall" className={style.varselTag}>
+              <BodyShort size="small" className={styles.eksterntVarslet}>
                 {eksternVarslingStatus}
-              </Tag>
+              </BodyShort>
             )}
           </div>
           <ArkiverButton varsel={varsel} />
@@ -86,39 +95,33 @@ const VarselBoks = ({ varsel, type }: { varsel: Varsel; type: string }) => {
     </div>
   ) : (
     <a
-      className={
-        isOppgave
-          ? `${style.varsel} ${style.klikkbartVarsel} ${style.oppgave}`
-          : `${style.varsel} ${style.klikkbartVarsel} ${style.beskjed}`
-      }
+      className={`${styles.varsel} ${styles.klikkbartVarsel} ${isOppgave ? styles.oppgave : styles.beskjed}`}
       href={varsel.isMasked ? stepUpUrl : varsel.link}
       onClick={handleOnClick}
     >
-      <div className={style.contentWrapper}>
-        <BodyShort className={style.klikkbarTittel}>
-          {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
-        </BodyShort>
+      <div className={styles.contentWrapper}>
+        <div className={styles.header}>
+          <div className={styles.varselTypeContainer}>
+            {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
+            <BodyShort className={styles.varselTypeText}>{varselTypeText}</BodyShort>
+          </div>
+          <div className={styles.chevronContainer}>
+            <BodyShort size="small" className={styles.dato}>
+              {dato}
+            </BodyShort>
+            <ChevronRightIcon aria-hidden={true} className={styles.chevron} />
+          </div>
+        </div>
 
-        <BodyLong size="small" className={style.dato}>
-          {dato}
+        <BodyLong className={styles.tittel}>
+          {varsel.isMasked ? text.beskjedMaskertTekst[language] : varsel.tekst}
         </BodyLong>
 
-        <div className={style.metadataOgKnapp}>
-          <div className={style.ikonOgTag}>
-            {isOppgave ? <OppgaveIkon /> : <BeskjedIkon />}
-            {eksternVarslingStatus && (
-              <Tag variant="neutral" size="xsmall" className={style.varselTag}>
-                {eksternVarslingStatus}
-              </Tag>
-            )}
-          </div>
-          <ChevronRightIcon
-            aria-hidden={true}
-            className={style.chevron}
-            onResize={undefined}
-            onResizeCapture={undefined}
-          />
-        </div>
+        {eksternVarslingStatus && (
+          <BodyShort size="small" className={styles.eksterntVarslet}>
+            {eksternVarslingStatus}
+          </BodyShort>
+        )}
       </div>
     </a>
   );

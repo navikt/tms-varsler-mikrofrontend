@@ -1,17 +1,16 @@
-import React, { useContext } from "react";
-import { LanguageContext } from "../../providers/LanguageProvider";
-import { text } from "../../language/text";
+import { Heading } from "@navikt/ds-react";
+import { useContext } from "react";
 import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
 import { varslerUrl } from "../../api/urls";
+import { text } from "../../language/text";
+import { LanguageContext } from "../../providers/LanguageProvider";
 import { selectAddVarsler, selectBeskjederList } from "../../store/selectors.js";
 import useStore from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
-import { BodyShort, Heading } from "@navikt/ds-react";
-import VarselBoks from "../varsler/varsel-boks/VarselBoks";
-import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
 import IngenVarsler from "../varsler/ingen-varsler/IngenVarsler";
-import IngenAvType from "../varsler/ingen-av-type/IngenAvType";
+import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
+import VarselBoks from "../varsler/varsel-boks/VarselBoks";
 import style from "./MainPage.module.css";
 
 export interface Varsel {
@@ -59,41 +58,21 @@ const MainPage = () => {
           <>
             <div>
               <ul className={style.varselList}>
-                <BodyShort size="medium" spacing>
-                  {text.oppgaverTittel[language]}
-                </BodyShort>
-                {hasNoOppgaver ? (
-                  <IngenAvType type="OPPGAVE" />
-                ) : (
-                  varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
-                    <li key={o.eventId}>
-                      <VarselBoks varsel={o} type="OPPGAVE" />
-                    </li>
-                  ))
-                )}
-              </ul>
-            </div>
-            <div>
-              <ul className={`${style.varselList} ${style.beskjedList}`}>
-                <BodyShort size="medium" spacing>
-                  {text.beskjederTittel[language]}
-                </BodyShort>
-                {hasNoBeskjeder ? (
-                  <IngenAvType type="BESKJED" />
-                ) : (
-                  <>
-                    {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
-                      <li key={b.eventId}>
-                        <VarselBoks varsel={b} type="BESKJED" />
-                      </li>
-                    ))}
-                    {varsler?.innbokser.sort(sortByEventTidspunkt).map((i: Varsel) => (
-                      <li key={i.eventId}>
-                        <VarselBoks varsel={i} type="INNBOKS" />
-                      </li>
-                    ))}
-                  </>
-                )}
+                {varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
+                  <li key={o.eventId}>
+                    <VarselBoks varsel={o} type="OPPGAVE" />
+                  </li>
+                ))}
+                {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
+                  <li key={b.eventId}>
+                    <VarselBoks varsel={b} type="BESKJED" />
+                  </li>
+                ))}
+                {varsler?.innbokser.sort(sortByEventTidspunkt).map((i: Varsel) => (
+                  <li key={i.eventId}>
+                    <VarselBoks varsel={i} type="INNBOKS" />
+                  </li>
+                ))}
               </ul>
             </div>
             <div className={style.tidligereVarslerLenke}>

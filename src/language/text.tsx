@@ -4,6 +4,11 @@ export const text = {
     nn: "Varsel",
     en: "Notifications",
   },
+  oppgave: {
+    nb: "Oppgave",
+    nn: "Oppgåve",
+    en: "Task",
+  },
   oppgaverTittel: {
     nb: "Oppgaver",
     nn: "Oppgåver",
@@ -13,6 +18,11 @@ export const text = {
     nb: "Du har ingen oppgaver",
     nn: "Du har ingen oppgåver",
     en: "You have no tasks",
+  },
+  beskjed: {
+    nb: "Beskjed",
+    nn: "Beskjed",
+    en: "Message",
   },
   beskjederTittel: {
     nb: "Beskjeder",
