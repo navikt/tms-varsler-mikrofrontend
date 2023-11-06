@@ -65,7 +65,7 @@ export const varslerHandler = () => {
             forstBehandlet: "2020-02-22T08:53:31.607Z",
             eventId: "1584093211607",
             tekst: "Svar fra veilederen din i innboksen: Hei, nå har jeg sjekket om...",
-            link: null,
+            link: "https://enNyLenke",
             isMasked: false,
             eksternVarslingSendt: true,
             eksternVarslingKanaler: ["EPOST"],
