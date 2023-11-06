@@ -1,8 +1,11 @@
 import { HttpResponse, http } from "msw";
-import { varslerUrl } from "../api/urls";
+import { postDoneUrl, varslerUrl } from "../api/urls";
 
 export const varslerHandler = () => {
   return [
+    http.post(postDoneUrl, () => {
+      return new HttpResponse("OK", { status: 200 });
+    }),
     http.get(varslerUrl, () => {
       return HttpResponse.json({
         oppgaver: [

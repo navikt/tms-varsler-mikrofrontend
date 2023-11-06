@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { LanguageContext } from "../../../providers/LanguageProvider";
-import { text } from "../../../language/text";
 import { BodyLong, Heading } from "@navikt/ds-react";
+import { useContext } from "react";
 import KattIngenVarsler from "../../../ikoner/KattIngenVarsler";
-import style from "./IngenVarsler.module.css";
+import { text } from "../../../language/text";
+import { LanguageContext } from "../../../providers/LanguageProvider";
 import TidligereVarslerInngang from "../inngang-tidligere-varsler/TidligereVarslerInngang";
+import style from "./IngenVarsler.module.css";
 
 const IngenVarsler = () => {
   const language = useContext(LanguageContext);

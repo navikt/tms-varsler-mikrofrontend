@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { LanguageContext } from "../../../providers/LanguageProvider";
-import { text } from "../../../language/text";
+import { useContext } from "react";
 import { tidligereVarslerUrl } from "../../../api/urls";
+import { text } from "../../../language/text";
+import { LanguageContext } from "../../../providers/LanguageProvider";
 import { logEvent } from "../../../utils/amplitude";
 import style from "./TidligereVarslerInngang.module.css";
 

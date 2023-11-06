@@ -1,6 +1,6 @@
 import { Heading } from "@navikt/ds-react";
 import { useContext } from "react";
-import { useQuery } from "react-query";
+import useSWRImmutable from "swr/immutable";
 import { fetcher } from "../../api/api";
 import { varslerUrl } from "../../api/urls";
 import { text } from "../../language/text";
@@ -30,21 +30,20 @@ export interface Varsler {
 }
 
 const MainPage = () => {
+  const language = useContext(LanguageContext);
   const beskjeder = useStore(selectBeskjederList);
   const addVarsler = useStore(selectAddVarsler);
-  const { data: varsler, isLoading: isLoadingVarsler } = useQuery(varslerUrl, fetcher, {
+  const { data: varsler, isLoading: isLoadingVarsler } = useSWRImmutable<Varsler>(varslerUrl, fetcher, {
     onSuccess: addVarsler,
   });
-
-  const language = useContext(LanguageContext);
-
-  const hasNoOppgaver = varsler?.oppgaver.length === 0;
-  const hasNoBeskjeder = varsler?.beskjeder.length === 0 && varsler?.innbokser.length === 0;
-  const hasNoVarsler = hasNoOppgaver && hasNoBeskjeder;
 
   if (isLoadingVarsler) {
     return null;
   }
+
+  const hasNoOppgaver = varsler?.oppgaver.length === 0;
+  const hasNoBeskjeder = beskjeder.length === 0;
+  const hasNoVarsler = hasNoOppgaver && hasNoBeskjeder;
 
   return (
     <div className={style.pageWrapper}>
@@ -56,25 +55,18 @@ const MainPage = () => {
           <IngenVarsler />
         ) : (
           <>
-            <div>
-              <ul className={style.varselList}>
-                {varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
-                  <li key={o.eventId}>
-                    <VarselBoks varsel={o} type="OPPGAVE" />
-                  </li>
-                ))}
-                {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
-                  <li key={b.eventId}>
-                    <VarselBoks varsel={b} type="BESKJED" />
-                  </li>
-                ))}
-                {varsler?.innbokser.sort(sortByEventTidspunkt).map((i: Varsel) => (
-                  <li key={i.eventId}>
-                    <VarselBoks varsel={i} type="INNBOKS" />
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className={style.varselList}>
+              {varsler?.oppgaver.sort(sortByEventTidspunkt).map((o: Varsel) => (
+                <li key={o.eventId}>
+                  <VarselBoks varsel={o} type="OPPGAVE" />
+                </li>
+              ))}
+              {beskjeder?.sort(sortByEventTidspunkt).map((b: Varsel) => (
+                <li key={b.eventId}>
+                  <VarselBoks varsel={b} type="BESKJED" />
+                </li>
+              ))}
+            </ul>
             <div className={style.tidligereVarslerLenke}>
               <TidligereVarslerInngang />
             </div>

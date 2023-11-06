@@ -18,9 +18,11 @@
     "react-dom": "18.2.0",
     "react-query": "3.39.3",
     "rollup-plugin-terser": "7.0.2",
+    "swr": "2.2.4",
     "zustand": "4.4.4"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "6.1.4",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.5.1",
     "@types/amplitude-js": "8.16.4",
