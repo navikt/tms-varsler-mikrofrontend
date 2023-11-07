@@ -97,4 +97,4 @@ export const ingenVarslerHandler = () => {
   ];
 };
 
-export const handlers = [...ingenVarslerHandler()];
+export const handlers = [...varslerHandler()];
