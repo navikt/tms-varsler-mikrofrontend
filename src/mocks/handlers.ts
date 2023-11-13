@@ -85,4 +85,16 @@ export const varslerHandler = () => {
   ];
 };
 
+export const ingenVarslerHandler = () => {
+  return [
+    http.get(varslerUrl, () => {
+      return HttpResponse.json({
+        oppgaver: [],
+        beskjeder: [],
+        innbokser: [],
+      });
+    }),
+  ];
+};
+
 export const handlers = [...varslerHandler()];

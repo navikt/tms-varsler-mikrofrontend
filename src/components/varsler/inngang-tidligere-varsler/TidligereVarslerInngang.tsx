@@ -1,3 +1,4 @@
+import { Link } from "@navikt/ds-react";
 import { useContext } from "react";
 import { tidligereVarslerUrl } from "../../../api/urls";
 import { text } from "../../../language/text";
@@ -9,13 +10,13 @@ const TidligereVarslerInngang = () => {
   const language = useContext(LanguageContext);
 
   return (
-    <a
-      className={style.inngang}
+    <Link
       href={tidligereVarslerUrl}
       onClick={() => logEvent("tidligere-varsler-lenke", "varsler", "Tidligere varsler", undefined)}
+      className={style.inngang}
     >
       {text.inngangTidligereVarsler[language]}
-    </a>
+    </Link>
   );
 };
 

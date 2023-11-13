@@ -55,13 +55,13 @@ export const text = {
     en: "Archive",
   },
   varslerTomListe: {
-    nb: "Du har ingen nye varsler",
-    nn: "Du har ingen nye varsel",
-    en: "You have no new notifications",
+    nb: "Ingen nye varsler",
+    nn: "Ingen nye varsel",
+    en: "No new notifications",
   },
   varslerTomListeIngress: {
-    nb: "Vi varsler deg når noe skjer",
-    nn: "Vi varslar deg når noko skjer",
+    nb: "Vi varsler deg når noe skjer.",
+    nn: "Vi varslar deg når noko skjer.",
     en: "We will notify you when something happens.",
   },
   varselEksterntVarsletSMS: {

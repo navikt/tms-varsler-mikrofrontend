@@ -25,7 +25,7 @@ test("Vis ingen varsler-side ved ingen varsler", async () => {
     </SWRConfig>,
   );
 
-  expect(await screen.findByRole("heading", { level: 1, name: "Du har ingen nye varsler" })).toBeInTheDocument();
+  expect(await screen.findByRole("heading", { level: 1, name: "Ingen nye varsler" })).toBeInTheDocument();
   expect(await screen.findByRole("link", { name: "Tidligere varsler" })).toBeInTheDocument();
   expect(await axe(container)).toHaveNoViolations();
 });

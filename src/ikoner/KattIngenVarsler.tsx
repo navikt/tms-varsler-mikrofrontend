@@ -1,13 +1,6 @@
 const KattIngenVarsler = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="163"
-      height="188"
-      viewBox="0 0 163 188"
-      fill="none"
-      aria-hidden="true"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="69" height="80" viewBox="0 0 163 188" fill="none" aria-hidden="true">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
