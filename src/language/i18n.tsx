@@ -1,6 +1,9 @@
 import dayjs from "dayjs";
 import "dayjs/locale/nb";
 import localeData from "dayjs/plugin/localeData";
+import { useContext } from "react";
+import { LanguageContext } from "../providers/LanguageProvider";
+import { text } from "./text";
 
 dayjs.locale("nb");
 
@@ -9,6 +12,18 @@ export const setLocaleDate = () => {
   dayjs.locale("nb");
 };
 
-export const formatToReadableDate = (date: string) => {
-  return dayjs(date).format("DD.MM.YYYY HH:mm");
+const dateAsText = (date: string): string => {
+  const language = useContext(LanguageContext);
+
+  if (dayjs(date).isSame(dayjs(), "day")) {
+    return text.iDag[language];
+  }
+
+  if (dayjs(date).isSame(dayjs().subtract(1, "day"), "day")) {
+    return text.iGår[language];
+  }
+
+  return dayjs(date).format("DD.MM.YYYY");
 };
+
+export const formatToReadableDate = (date: string) => `${dateAsText(date)} ${dayjs(date).format("HH:mm")}`;
