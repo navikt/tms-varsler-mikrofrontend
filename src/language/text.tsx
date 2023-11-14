@@ -79,4 +79,19 @@ export const text = {
     nn: "Varslet på e-post og SMS",
     en: "Notified by e-mail and SMS",
   },
+  iDag: {
+    nb: "I dag",
+    nn: "I dag",
+    en: "Today",
+  },
+  iGår: {
+    nb: "I går",
+    nn: "I går",
+    en: "Yesterday",
+  },
+  klokkeslettPrefix: {
+    nb: "kl. ",
+    nn: "kl. ",
+    en: "",
+  },
 };

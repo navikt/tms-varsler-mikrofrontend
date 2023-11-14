@@ -10,7 +10,7 @@ export const varslerHandler = () => {
       return HttpResponse.json({
         oppgaver: [
           {
-            forstBehandlet: "2023-10-30T08:53:31.607Z",
+            forstBehandlet: "2023-11-14T08:53:31.607Z",
             eventId: "1584093211607",
             tekst: "Svar fra veilederen din i innboksen: Hei, nå har jeg sjekket om...",
             link: "https://enNyLenke",
@@ -30,7 +30,7 @@ export const varslerHandler = () => {
         ],
         beskjeder: [
           {
-            forstBehandlet: "2020-03-03T08:53:17.47Z",
+            forstBehandlet: "2023-11-13T08:53:17.47Z",
             eventId: "1584093197470",
             tekst:
               "Vi mottok søknaden din 18. september 2019. Du kan følge med på statusen i Dine foreldrepenger. Her kan du også ettersende vedlegg til sønakden hvis det er noe du ønsker å gjøre.",
