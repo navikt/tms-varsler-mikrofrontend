@@ -89,4 +89,9 @@ export const text = {
     nn: "I går",
     en: "Yesterday",
   },
+  klokkeslettPrefix: {
+    nb: "kl. ",
+    nn: "kl. ",
+    en: "",
+  },
 };

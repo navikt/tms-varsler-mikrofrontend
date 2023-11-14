@@ -26,4 +26,10 @@ const dateAsText = (date: string): string => {
   return dayjs(date).format("DD.MM.YYYY");
 };
 
-export const formatToReadableDate = (date: string) => `${dateAsText(date)} ${dayjs(date).format("HH:mm")}`;
+const timeAsText = (date: string): string => {
+  const language = useContext(LanguageContext);
+
+  return `${text.klokkeslettPrefix[language]} ${dayjs(date).format("HH:mm")}`;
+};
+
+export const formatToReadableDate = (date: string) => `${dateAsText(date)}, ${timeAsText(date)}`;
