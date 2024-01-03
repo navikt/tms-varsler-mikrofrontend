@@ -1,33 +1,18 @@
-import create from "zustand";
+import { atom } from "nanostores";
 import { Varsel, Varsler } from "../components/main-page/MainPage";
-import { State } from "./selectors";
 
-export const actions = (set: any) => ({
-  add: (beskjed: Varsel) =>
-    set((state: State) => ({
-      beskjederList: [...state.varsler.beskjeder, beskjed],
-    })),
-  addVarsler: (varsler: Varsler) =>
-    set(() => ({
-      varsler: { beskjeder: varsler.beskjeder, oppgaver: varsler.oppgaver, innbokser: varsler.innbokser },
-    })),
-  removeBeskjed: (beskjed: Varsel) =>
-    set((state: State) => ({
-      varsler: {
-        beskjeder: state.varsler.beskjeder.filter((b) => b.eventId !== beskjed.eventId),
-        oppgaver: state.varsler.oppgaver,
-        innbokser: state.varsler.innbokser,
-      },
-    })),
-  clear: () =>
-    set({
-      varsler: { beskjeder: [], oppgaver: [], innbokser: [] },
-    }),
-});
+export const isErrorAtom = atom<boolean>(false);
 
-const useStore = create<State>((set) => ({
-  varsler: { beskjeder: [], oppgaver: [], innbokser: [] },
-  ...actions(set),
-}));
+export function setIsError() {
+  isErrorAtom.set(true);
+}
 
-export default useStore;
+export const beskjedListe = atom<Array<Varsel>>([]);
+
+export function setBeskjeder(varsler: Varsler) {
+  beskjedListe.set([...varsler.beskjeder, ...varsler.innbokser]);
+}
+
+export function removeBeskjed(beskjed: Varsel) {
+  beskjedListe.set([...beskjedListe.get().filter((b) => b.eventId !== beskjed.eventId)]);
+}

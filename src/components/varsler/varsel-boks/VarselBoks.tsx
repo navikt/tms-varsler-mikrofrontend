@@ -8,11 +8,10 @@ import OppgaveIkon from "../../../ikoner/OppgaveIkon.js";
 import { formatToReadableDate, setLocaleDate } from "../../../language/i18n.js";
 import { text } from "../../../language/text";
 import { LanguageContext } from "../../../providers/LanguageProvider";
-import { selectRemoveBeskjed } from "../../../store/selectors.js";
-import useStore from "../../../store/store.js";
 import { logArkiverEvent, logEvent } from "../../../utils/amplitude.js";
 import { Varsel } from "../../main-page/MainPage.js";
 import styles from "./VarselBoks.module.css";
+import { removeBeskjed } from "../../../store/store.js";
 
 const getEksternvarslingStatus = (kanaler: string[]) => {
   const language = useContext(LanguageContext);
@@ -27,7 +26,6 @@ const getEksternvarslingStatus = (kanaler: string[]) => {
 
 const ArkiverButton = ({ varsel }: { varsel: Varsel }) => {
   const language = useContext(LanguageContext);
-  const removeBeskjed = useStore(selectRemoveBeskjed);
 
   const handleOnClick = () => {
     postDone({ eventId: varsel.eventId });
