@@ -5,13 +5,13 @@ import { fetcher } from "../../api/api";
 import { varslerUrl } from "../../api/urls";
 import { text } from "../../language/text";
 import { LanguageContext } from "../../providers/LanguageProvider";
-import { selectAddVarsler, selectBeskjederList } from "../../store/selectors.js";
-import useStore from "../../store/store.js";
+import { setBeskjeder, beskjedListe } from "../../store/store.js";
 import { sortByEventTidspunkt } from "../../utils/sorter";
 import IngenVarsler from "../varsler/ingen-varsler/IngenVarsler";
 import TidligereVarslerInngang from "../varsler/inngang-tidligere-varsler/TidligereVarslerInngang";
 import VarselBoks from "../varsler/varsel-boks/VarselBoks";
 import style from "./MainPage.module.css";
+import { useStore } from "@nanostores/react";
 
 export interface Varsel {
   forstBehandlet: string;
@@ -31,18 +31,18 @@ export interface Varsler {
 
 const MainPage = () => {
   const language = useContext(LanguageContext);
-  const beskjeder = useStore(selectBeskjederList);
-  const addVarsler = useStore(selectAddVarsler);
   const { data: varsler, isLoading: isLoadingVarsler } = useSWRImmutable<Varsler>(varslerUrl, fetcher, {
-    onSuccess: addVarsler,
+    onSuccess: (varsler) => setBeskjeder(varsler),
   });
+
+  const beskjeder = useStore(beskjedListe);
 
   if (isLoadingVarsler) {
     return null;
   }
 
   const hasNoOppgaver = varsler?.oppgaver.length === 0;
-  const hasNoBeskjeder = beskjeder.length === 0;
+  const hasNoBeskjeder = varsler?.beskjeder.length === 0;
   const hasNoVarsler = hasNoOppgaver && hasNoBeskjeder;
 
   return (

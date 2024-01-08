@@ -11,6 +11,7 @@
     "lint": "eslint --ext .ts,.tsx ."
   },
   "dependencies": {
+    "@nanostores/react": "^0.7.1",
     "@navikt/ds-react": "5.7.6",
     "amplitude-js": "8.21.9",
     "dayjs": "1.11.10",
@@ -18,8 +19,7 @@
     "react-dom": "18.2.0",
     "react-query": "3.39.3",
     "rollup-plugin-terser": "7.0.2",
-    "swr": "2.2.4",
-    "zustand": "4.4.4"
+    "swr": "2.2.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "6.1.4",
