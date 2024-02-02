@@ -42,7 +42,7 @@ const MainPage = () => {
   }
 
   const hasNoOppgaver = varsler?.oppgaver.length === 0;
-  const hasNoBeskjeder = varsler?.beskjeder.length === 0;
+  const hasNoBeskjeder = beskjeder.length === 0;
   const hasNoVarsler = hasNoOppgaver && hasNoBeskjeder;
 
   return (
