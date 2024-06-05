@@ -8,8 +8,8 @@ permissions:
 
 jobs:
   deploy:
-    uses: navikt/tms-deploy/.github/workflows/mikrofrontend-deploy.yaml@main
+    uses: navikt/tms-deploy/.github/workflows/mikrofrontend-deploy-v2.yaml@main
     with:
       cluster: '["dev-gcp"]'
-      node-version: 18
+      node-version: 20
     secrets: inherit
